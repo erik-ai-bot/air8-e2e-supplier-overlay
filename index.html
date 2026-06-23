@@ -706,125 +706,122 @@ const SUPPLIER_DATA={
  mybari:{
   name:'M.Y. Bari',cls:'mybari',
   nodes:{
-  // ── PROCUREMENT SOURCES ──
-  // BOM/PO: NO data → NOT included (will be dimmed automatically)
-  // Customs Data (procurement): M.Y. Bari has NO 1688 data → not included
-  's_tp_p':{badge:'RM bind · 1 analog',lines:['3rd Party / AI intel — RM market data','Commodity pricing: textile yarn trends','Upstream supplier enrichment via 3P DB']},
-  's_fs_p':{badge:'~35 RM suppliers',lines:['Field Survey: upstream RM sourcing audit','~35 upstream RM suppliers mapped','Key: Masood Roomi · Sapphire · Archroma','Country concentration: Pakistan ~73%']},
-  's_rmcert':{badge:'BCI 100% · OEKO 90%',lines:['RM Certification data:','BCI Cotton: <b>100%</b>','OEKO-TEX Standard 100: <b>90%</b>','GOTS · ZDHC · ISO 9001 · ISO 14001','WRAP · SEDEX · BCI all active']},
-  // ── PROCUREMENT METRICS ──
-  'm_sup_map':{badge:'~35 upstream · PK yarn',lines:['<b>Upstream suppliers mapped: ~35</b>','Key: Masood Roomi, Sapphire, Archroma','Top3 concentration: <b>73%</b>','Peer avg: ~60% | Risk: medium-high']},
-  'm_concentration':{badge:'Top3=73% · PK yarn',lines:['Sourcing concentration (country/supplier):','Top3 supplier share: <b>73%</b>','Country: Pakistan (yarn primary)','Peer avg: ~60% | Norm wtd score: N/A']},
-  'm_cert_cov':{badge:'78% · BCI 100%',lines:['RM Cert Coverage: <b>78%</b>','BCI: 100% · OEKO-TEX: 90%','ZDHC: 80% · GOTS: 60%','UFLPA compliance gap flagged']},
-  // ── PRODUCTION SOURCES ──
-  // TA Report: NO structured data for M.Y. Bari → NOT included (dimmed)
-  // Lab Testing: NO lab test data → NOT included (dimmed)
-  's_insp':{badge:'Inspection active',lines:['Inspection Report: <b>ACTIVE</b>','Source for pass rate, defect, complexity metrics']},
-  's_fs_pr':{badge:'3 factories · ~2,500w',lines:['Field Survey / FS:','Workers: <b>~2,500</b> across 3 factories','Years of operation: <b>12 yrs</b>','Source: Field Survey → <a href="https://mybari-intel.pages.dev/" target="_blank">mybari-intel.pages.dev</a>']},
-  // ── PRODUCTION METRICS ──
-  'm_capacity':{badge:'~2,500w · 3 factories',lines:['<b>Capacity: ~2,500 workers</b>','3 factories · S.I.T.E., Karachi Pakistan','178 looms · ~120 active','Source: Field Survey']},
-  'm_pass_rate':{badge:'100% | Wtd 6.75 | norm 5.1',lines:['<b>1st Pass Rate: 100.00%</b>','Supplier Wtd score: <b>6.75</b>','Industry norm (avg): <b>5.1</b>','Score: 1.0/1.0 (max 6.75)']},
-  'm_defect':{badge:'0.39% | Wtd 3.75 | norm 2.5',lines:['<b>Defect Rate: 0.39%</b>','Supplier Wtd score: <b>3.75</b>','Industry norm (avg): <b>2.5</b>','Score: 1.0/1.0 (max 3.75)']},
-  'm_compliance':{badge:'SEDEX·ISO·OEKO·BCI',lines:['Factory compliance & certifications:','<b>SEDEX · ISO 9001 · ISO 14001</b>','<b>OEKO-TEX · BCI · GOTS · ZDHC · WRAP</b>','78% overall cert coverage']},
-  'm_workforce':{badge:'~2,500w · ~75 looms',lines:['Workforce capacity detail:','<b>~2,500 workers</b>','~75 looms operational (178 total)','Source: Field Survey']},
-  // ── DELIVERY SOURCES ──
-  's_td_d':{badge:'2,230 ships · 1 dest',lines:['PO / Invoice / Shipment data:','<b>Total Shipments: 2,230</b>','<b>5 destination countries</b>','US 53.4% · DE · NL · NO · PL','OTD: 100% · DIF: 100%']},
-  's_cust_d':{badge:'5 countries · US 53%',lines:['Customs delivery data:','<b>5 export destination countries</b>','US 53.4% · Germany 40% · Netherlands 16%','Norway 3% · Poland 1%','Shipment mode: ~99% Sea']},
-  's_tp_d':{badge:'trade feed routing',lines:['3rd Party / AI delivery intel:','Route risk monitoring (Red Sea etc.)','Tariff classification data','Trade lane intelligence']},
-  // ── DELIVERY METRICS ──
-  'm_otd':{badge:'4.22d | Wtd 15.08 | norm 17.8',lines:['<b>OTD Rate: 100% on-time</b>','Avg shipment delay: <b>4.22 days</b>','Supplier Wtd score: <b>15.08</b>','Industry norm (avg): <b>17.8</b>','Benchmark: <5d avg delay target']},
-  'm_dif':{badge:'100% | Wtd 4.5 | norm 4.5',lines:['<b>Delivery in Full: 100%</b>','Supplier weighted score: <b>4.5</b>','Industry avg (norm): <b>4.5</b>','No short/over deliveries recorded']},
-  'm_freq':{badge:'2,230 ships · 5 dest',lines:['Shipping frequency & volume:','<b>2,230 total shipments</b>','<b>5 destination countries</b>','Peak season: Q3/Q4 (US retail cycle)']},
-  'm_dest':{badge:'5 countries · US 53%',lines:['Destination mix & transit mode:','US <b>53.4%</b> · Germany 40%','Netherlands 16% · Norway 3% · Poland 1%','Mode: ~99% Sea freight']},
-  // Lead time: NO specific data → NOT included (dimmed)
-  // ── PAYMENT SOURCES ──
-  's_bank':{badge:'Payment disciplined',lines:['Bank Statement:','Payment discipline: <b>GOOD</b>','<b>0 claims recorded</b>','No adverse payment history','Claim ratio: 0% (vs industry norm)']},
-  's_td_pay':{badge:'FR: TBC inv · 120d terms',lines:['PO / Invoice (FR data):','Financed buyers: <b>TBC</b>','No. of invoices financed: <b>TBC (FR tab)</b>','Financing value: <b>TBC</b>','Payment terms: <b>120 days avg</b>']},
-  's_cust_pay':{badge:'40 buyers · Top3=66%',lines:['Customs payment data:','<b>No. of buyers: 40</b>','Buyer concentration (Top3): <b>66%</b>','HHI: moderate','1688 downstream txns: — (no CN customs data)']},
-  's_tp_pay':{badge:'Buyer credit data',lines:['3rd Party buyer credit signals:','Buyer credit quality: <b>partial</b>','BBB+/BB- rated buyer portfolio']},
-  // ── PAYMENT METRICS ──
-  'm_pay_p':{badge:'0 claims · 120d',lines:['Payment punctuality & discipline:','Claim ratio: <b>0%</b>','Payment terms: <b>120 days</b>','Supplier Wtd score: <b>6.75</b>','Industry norm (avg): <b>13.5</b> (performance dim)']},
-  'm_claim':{badge:'0 claims | Wtd 6.75 | norm 13.5',lines:['<b>Claim ratio: 0 claims</b>','Supplier Wtd score: <b>6.75</b>','Industry norm (avg): <b>13.5</b>','Score: 1.0/1.0 (max 6.75)']},
-  'm_b_count':{badge:'40 buyers | Wtd 2.00 | norm 1.3',lines:['<b>No. of buyers: 40</b>','Supplier Wtd score: <b>2.00</b>','Industry norm (avg): <b>1.3</b>','Score: 1.0/1.0 (max 2.0)']},
-  'm_b_conc':{badge:'Top3=66% | Wtd 2.68 | norm 2.7',lines:['<b>Buyer concentration (Top3): 0.66 = 66%</b>','Supplier Wtd score: <b>2.68</b>','Industry norm (avg): <b>2.7</b>','Score: 0.67/1.0']},
-  'm_terms':{badge:'120d | Wtd 0 | norm 1.3',lines:['<b>Payment terms: 120 days</b>','Supplier Wtd score: <b>0</b> (>90d = 0 score)','Industry norm (avg): <b>1.3</b>','Note: long payment terms reduce score']},
-  'm_dilution':{badge:'0 dilution',lines:['Dilution risk & invoice adjustments:','<b>0 dilution events recorded</b>','No invoice adjustments or deductions']},
-  'm_hs_buyer':{badge:'40 buyers mapped',lines:['HS code & buyer transaction mapping:','<b>40 buyers</b> in payment stage','Buyer HS code data: partial']},
-  'm_b_credit':{badge:'BBB+/BB-',lines:['Buyer credit quality signals:','Buyer portfolio rating: <b>BBB+/BB-</b>','Source: 3rd party credit data (partial)']},
+ // PROCUREMENT SOURCES (explicit only)
+ 's_tp_p':{badge:'RM intel · ~35 sup',lines:['3rd Party/AI — procurement intel','Upstream supplier enrichment','Commodity pricing: textile yarn']},
+ 's_fs_p':{badge:'~35 RM sup · Top3=73%',lines:['Field Survey upstream:','~35 upstream RM suppliers mapped','Key: Masood Roomi · Sapphire · Archroma','Country conc: Pakistan ~73%']},
+ 's_rmcert':{badge:'BCI 100% · OEKO 90%',lines:['RM Certification:','BCI Cotton: 100%','OEKO-TEX: 90% · GOTS · ZDHC','ISO 9001 · ISO 14001 · WRAP · SEDEX']},
+ // PROCUREMENT METRICS
+ 'm_sup_map':{badge:'~35 upstream · PK yarn',lines:['Upstream suppliers: ~35','Key: Masood Roomi, Sapphire, Archroma','Top3 concentration: 73% | norm: —']},
+ 'm_concentration':{badge:'Top3=73% · Pakistan',lines:['Sourcing concentration:','Top3 supplier share: 73%','Country: Pakistan (yarn primary) | norm: —']},
+ 'm_cert_cov':{badge:'78% cert coverage',lines:['RM Cert Coverage: 78%','BCI 100% · OEKO-TEX 90%','ZDHC 80% · GOTS 60%']},
+ // PRODUCTION SOURCES
+ 's_insp':{badge:'Inspection ACTIVE',lines:['Inspection Report: ACTIVE','Feeds: 1st pass rate · defect ratio']},
+ 's_fs_pr':{badge:'3 factories · ~2,500w',lines:['Field Survey / FS:','Workers: ~2,500 across 3 factories','12 yrs ops · S.I.T.E. Karachi','→ <a href=https://mybari-intel.pages.dev/ target=_blank>mybari-intel.pages.dev</a>']},
+ // PRODUCTION METRICS
+ 'm_capacity':{badge:'~2,500w · 3 factories',lines:['Capacity: ~2,500 workers · 3 factories','12 yrs ops · 178 looms (~120 active)','Source: Field Survey | norm: —']},
+ 'm_pass_rate':{badge:'100% | 6.75 | 5.1',lines:['1st Pass Rate: 100.00%','Score (wtd): 6.75 | Industry norm: 5.1','Raw score: 1.0 | Weight: 45%']},
+ 'm_defect':{badge:'0.39% | 3.75 | 2.5',lines:['Defect Rate: 0.39%','Score (wtd): 3.75 | Industry norm: 2.5','Raw score: 1.0 | Weight: 25%']},
+ 'm_compliance':{badge:'SEDEX·ISO·OEKO·BCI',lines:['Factory compliance & certs:','SEDEX · ISO 9001 · ISO 14001','OEKO-TEX · BCI · GOTS · ZDHC · WRAP','Coverage: 78%']},
+ 'm_workforce':{badge:'~2,500w · 3 factories',lines:['Workforce capacity:','~2,500 workers · 3 factories','Source: Field Survey | norm: —']},
+ // DELIVERY SOURCES
+ 's_td_d':{badge:'2,230 ships · 5 dest',lines:['PO / Invoice / Shipment:','Total Shipments: 2,230','5 destination countries','US 53.4% · DE · NL · NO · PL']},
+ 's_cust_d':{badge:'5 countries · HS 5560',lines:['Customs Data (delivery):','5 export countries | HS: 5560 (terry textiles)','US 53.4% · Germany 40% · Netherlands 16%','Mode: ~99% Sea freight']},
+ 's_tp_d':{badge:'trade feed · routing',lines:['3rd Party/AI delivery:','Route risk monitoring','Tariff classification data']},
+ // DELIVERY METRICS
+ 'm_otd':{badge:'4.22d | 15.08 | 17.8',lines:['Shipment Delay Days: 4.22 days','Score (wtd): 15.08 | Industry norm: 17.8','Raw score: 0.67 | Weight: 50%','OTD: 100% on-time']},
+ 'm_dif':{badge:'100% | 4.5 | 4.5',lines:['Delivery in Full: 100%','Score (wtd): 4.5 | Industry norm: 4.5','Raw score: 1.0 | Weight: 10% (of Performance)']},
+ 'm_freq':{badge:'2,230 ships · 5 dest',lines:['Shipping frequency:','2,230 total shipments','5 destination countries']},
+ 'm_dest':{badge:'5 countries · US 53%',lines:['Destination mix:','US 53.4% · DE 40% · NL 16%','Norway 3% · Poland 1%','Mode: ~99% Sea']},
+ // PAYMENT SOURCES
+ 's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim ratio: 0% (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 4 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: -6.66% (score 0.67 | wtd 1.34 | norm 1.3)','Payment Term: 120 days (score 0 | wtd 0 | norm 1.3)']},
+ 's_td_pay':{badge:'FR: TBC · 40 buyers · $18M',lines:['PO / Invoice (Payment):','No. financed buyers: TBC (FR tab pending)','No. of invoices: TBC (FR tab pending)','Sales Turnover: $18,013,531','Payment Terms: 120 days']},
+ 's_cust_pay':{badge:'40 buyers · Top3=66%',lines:['Customs payment data:','No. of buyers: 40','Buyer concentration (Top3): 0.66 = 66%','1688 downstream: — (no CN customs data)']},
+ 's_tp_pay':{badge:'Buyer credit: BBB+/BB-',lines:['3rd Party buyer credit:','Buyer portfolio: BBB+/BB- rated']},
+ // PAYMENT METRICS
+ 'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Payment Term: 120d (score 0 | wtd 0 | norm 1.3)']},
+ 'm_claim':{badge:'0 | 6.75 | 13.5',lines:['Claim: 0 (no claims)','Score (wtd): 6.75 | Industry norm: 13.5','Raw score: 1.0 | Weight: 15%']},
+ 'm_b_count':{badge:'40 | 2.00 | 1.3',lines:['No. of Buyers: 40','Score (wtd): 2.00 | Industry norm: 1.3','Raw score: 1.0 | Weight: 5%']},
+ 'm_b_conc':{badge:'0.66 | 2.68 | 2.7',lines:['Buyer Concentration (Top3): 0.66 = 66%','Score (wtd): 2.68 | Industry norm: 2.7','Raw score: 0.67 | Weight: 10%']},
+ 'm_terms':{badge:'120d | 0 | 1.3',lines:['Payment Term: 120 days','Score (wtd): 0 | Industry norm: 1.3','Raw score: — | Weight: 10%']},
+ 'm_dilution':{badge:'0 dilution',lines:['Dilution risk: 0 events']},
+ 'm_hs_buyer':{badge:'40 buyers · partial',lines:['HS buyer mapping: 40 buyers','Buyer HS code data: partial']},
+ 'm_b_credit':{badge:'BBB+/BB- rated',lines:['Buyer credit quality: BBB+/BB-','Source: 3rd party (partial)']},
 }
  },
 
  gulahmed:{
   name:'Gul Ahmed',cls:'gulahmed',
   nodes:{
-  // ── PROCUREMENT SOURCES ──
-  's_cust_p':{badge:'3,097 upstream txns',lines:['Customs Data (1688) — upstream:','<b>1688 as Buyer: 3,097 transactions</b>','China import customs data','Upstream RM sourcing visibility']},
-  's_tp_p':{badge:'Sourcing intel',lines:['3rd Party / AI procurement intel:','Supplier mapping via trade databases','RM concentration analysis']},
-  's_fs_p':{badge:'72yr ops · PK textiles',lines:['Field Survey / upstream:','<b>72 years of operation</b>','Large-scale integrated textile manufacturer','Pakistan — full supply chain visibility']},
-  // ── PROCUREMENT METRICS ──
-  'm_sup_map':{badge:'Mapped · 72yr ops',lines:['Upstream supplier mapping:','<b>72 yr established manufacturer</b>','Integrated textile supply chain','In-house spinning/weaving/finishing']},
-  'm_concentration':{badge:'Integrated · low conc',lines:['Sourcing concentration:','Vertically integrated → low external RM dependency','In-house yarn production reduces concentration risk']},
-  // ── PRODUCTION SOURCES ──
-  's_insp':{badge:'Inspection active',lines:['Inspection Report: ACTIVE','Source for quality metrics']},
-  's_fs_pr':{badge:'18,466 workers · 72yr',lines:['Field Survey / FS:','Workers: <b>18,466</b>','Years of operation: <b>72 yrs</b>','Source: <a href="https://gul-ahmed-intel.pages.dev/" target="_blank">gul-ahmed-intel.pages.dev</a>']},
-  // ── PRODUCTION METRICS ──
-  'm_capacity':{badge:'18,466w · 72yr',lines:['<b>Capacity: 18,466 workers</b>','<b>72 years of operation</b>','Vertically integrated facility','Source: Field Survey']},
-  'm_pass_rate':{badge:'100% | Wtd 6.75 | norm 5.1',lines:['<b>1st Pass Rate: 100.00%</b>','Supplier Wtd score: <b>6.75</b>','Industry norm (avg): <b>5.1</b>']},
-  'm_defect':{badge:'0.32% | Wtd 3.75 | norm 2.5',lines:['<b>Defect Rate: 0.32%</b>','Supplier Wtd score: <b>3.75</b>','Industry norm (avg): <b>2.5</b>']},
-  'm_compliance':{badge:'OEKO·BCI·SEDEX·WRAP',lines:['Factory compliance:','<b>OEKO-TEX · BCI · SEDEX · WRAP</b>','ISO 9001 · ZDHC · ISO 14001']},
-  'm_workforce':{badge:'18,466 workers',lines:['Workforce capacity:','<b>18,466 workers</b>','Large-scale integrated textile operations']},
-  // ── DELIVERY SOURCES ──
-  's_td_d':{badge:'452 inv · 6,770 ships',lines:['PO / Invoice / Shipment:','<b>Invoices: 452</b>','<b>FR records: 390</b>','<b>Shipments: 6,770</b>','OTD avg delay: <b>4 days</b>']},
-  's_cust_d':{badge:'1688: 23,353 dn txns',lines:['Customs Data (1688) — downstream:','<b>1688 as Supplier: 23,353 transactions</b>','Export customs data — delivery stage']},
-  's_tp_d':{badge:'Trade routing data',lines:['3rd Party / AI delivery intel:','Route intelligence · tariff data']},
-  // ── DELIVERY METRICS ──
-  'm_otd':{badge:'4d | Wtd 27.0 | norm 17.8',lines:['<b>OTD Rate: 100%</b>','Avg delay: <b>4 days</b>','Supplier Wtd score: <b>27.0</b> (max 27)','Industry norm (avg): <b>17.8</b>','⭐ Excellent OTD performance']},
-  'm_dif':{badge:'100% | Wtd 4.5 | norm 4.5',lines:['<b>Delivery in Full: 100%</b>','Supplier weighted score: <b>4.5</b>','Industry avg (norm): <b>4.5</b>']},
-  'm_freq':{badge:'6,770 shipments',lines:['<b>6,770 total shipments</b>','High frequency supplier','Active past 2 years: Yes']},
-  // ── PAYMENT SOURCES ──
-  's_td_pay':{badge:'452 inv · 390 FR · $568M',lines:['PO / Invoice (FR data):','<b>Invoices: 452</b>','<b>FR records financed: 390</b>','<b>Sales Turnover: USD 568M</b>','Payment terms: TBC']},
-  's_cust_pay':{badge:'23,353 dn · 111 buyers',lines:['Customs payment data (1688):','<b>1688 as Supplier: 23,353 transactions</b>','<b>No. of buyers: 111</b>','Buyer concentration (Top3): <b>51%</b>']},
-  's_tp_pay':{badge:'Buyer credit data',lines:['3rd Party buyer credit signals:','<b>111 buyers</b> in network']},
-  // ── PAYMENT METRICS ──
-  'm_pay_p':{badge:'0 claims',lines:['Payment punctuality:','Claim ratio: <b>0%</b>','No claims recorded']},
-  'm_claim':{badge:'0 claims | Wtd 6.75 | norm 13.5',lines:['<b>Claim ratio: 0 claims</b>','Supplier Wtd score: <b>6.75</b>','Industry norm (avg): <b>13.5</b>']},
-  'm_b_count':{badge:'111 buyers | Wtd 2.00 | norm 1.3',lines:['<b>No. of buyers: 111</b>','Supplier Wtd score: <b>2.00</b>','Industry norm (avg): <b>1.3</b>']},
-  'm_b_conc':{badge:'Top3=51% | Wtd 4.00 | norm 2.7',lines:['<b>Buyer concentration (Top3): 51%</b>','Supplier Wtd score: <b>4.00</b>','Industry norm (avg): <b>2.7</b>']},
-  'm_terms':{badge:'TBC payment terms',lines:['Payment terms: TBC']},
-  'm_hs_buyer':{badge:'111 buyers · 1688',lines:['HS buyer mapping via 1688:','<b>111 buyers</b>','1688 downstream: 23,353 txns']},
+ // PROCUREMENT SOURCES
+ 's_cust_p':{badge:'1688: 3,097 upstream txns',lines:['Customs Data (1688) — procurement:','1688 as Buyer: 3,097 transactions','China import customs | upstream RM visibility']},
+ 's_tp_p':{badge:'Sourcing intel · integrated',lines:['3rd Party/AI procurement:','Supplier mapping | RM concentration analysis']},
+ 's_fs_p':{badge:'72yr · integrated mfg',lines:['Field Survey upstream:','72 yr established manufacturer','Vertically integrated — in-house yarn production','→ <a href=https://gul-ahmed-intel.pages.dev/ target=_blank>gul-ahmed-intel.pages.dev</a>']},
+ // PROCUREMENT METRICS
+ 'm_sup_map':{badge:'Integrated · low dep',lines:['Upstream supplier mapping:','72yr vertically integrated manufacturer','In-house spinning/weaving/finishing','Low external RM dependency']},
+ 'm_concentration':{badge:'Integrated · low conc',lines:['Sourcing concentration:','Vertically integrated → very low RM concentration risk','In-house yarn production']},
+ // PRODUCTION SOURCES
+ 's_insp':{badge:'Inspection ACTIVE',lines:['Inspection Report: ACTIVE']},
+ 's_fs_pr':{badge:'18,466w · 72yr',lines:['Field Survey / FS:','Workers: 18,466 | 72 yrs ops','→ <a href=https://gul-ahmed-intel.pages.dev/ target=_blank>gul-ahmed-intel.pages.dev</a>']},
+ // PRODUCTION METRICS
+ 'm_capacity':{badge:'18,466w · 72yr ops',lines:['Capacity: 18,466 workers','72 yrs of operation | vertically integrated','Source: Field Survey | norm: —']},
+ 'm_pass_rate':{badge:'100% | 6.75 | 5.1',lines:['1st Pass Rate: 100.00%','Score (wtd): 6.75 | Industry norm: 5.1','Raw score: 1.0 | Weight: 45%']},
+ 'm_defect':{badge:'0.32% | 3.75 | 2.5',lines:['Defect Rate: 0.32%','Score (wtd): 3.75 | Industry norm: 2.5','Raw score: 1.0 | Weight: 25%']},
+ 'm_compliance':{badge:'OEKO·BCI·SEDEX·WRAP',lines:['Factory compliance:','OEKO-TEX · BCI · SEDEX · WRAP','ISO 9001 · ZDHC · ISO 14001']},
+ 'm_workforce':{badge:'18,466 workers',lines:['Workforce: 18,466 workers','72 yr ops | large-scale integrated']},
+ // DELIVERY SOURCES
+ 's_td_d':{badge:'452 inv · 6,770 ships',lines:['PO / Invoice / Shipment:','Invoices: 452 | FR records: 390','Shipments: 6,770 | OTD avg delay: 4 days']},
+ 's_cust_d':{badge:'1688: 23,353 dn txns',lines:['Customs Data (1688) — delivery:','1688 as Supplier: 23,353 transactions','Export customs data']},
+ 's_tp_d':{badge:'Trade routing data',lines:['3rd Party/AI delivery:','Route intelligence · tariff data']},
+ // DELIVERY METRICS
+ 'm_otd':{badge:'4d | 22.5 | 17.8',lines:['Shipment Delay Days: 4 days','Score (wtd): 22.5 | Industry norm: 17.8','Raw score: 1.0 | Weight: 50%','Excellent OTD performance']},
+ 'm_dif':{badge:'100% | 4.5 | 4.5',lines:['Delivery in Full: 100%','Score (wtd): 4.5 | Industry norm: 4.5','Raw score: 1.0 | Weight: 10%']},
+ 'm_freq':{badge:'452 inv · 6,770 ships',lines:['Shipping frequency:','452 invoices | 6,770 shipments','Active past 2 years: Yes']},
+ // PAYMENT SOURCES
+ 's_bank':{badge:'0 claims · 5 txns/yr',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 5 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: 100% (score 1.0 | wtd 2.0 | norm 1.3)']},
+ 's_td_pay':{badge:'452 inv · 390 FR · $568M',lines:['PO / Invoice (Payment):','No. financed buyers: (see buyer count)','No. of invoices: 452','FR records financed: 390','Sales Turnover: USD 568M']},
+ 's_cust_pay':{badge:'1688: 23,353 dn · 111 buyers',lines:['Customs payment (1688):','1688 as Supplier: 23,353 transactions','No. of buyers: 111','Buyer concentration (Top3): 0.51 = 51%']},
+ 's_tp_pay':{badge:'Buyer credit data',lines:['3rd Party buyer credit:','111 buyers in network']},
+ // PAYMENT METRICS
+ 'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)']},
+ 'm_claim':{badge:'0 | 6.75 | 13.5',lines:['Claim: 0','Score (wtd): 6.75 | Industry norm: 13.5','Raw score: 1.0 | Weight: 15%']},
+ 'm_b_count':{badge:'111 | 2.00 | 1.3',lines:['No. of Buyers: 111','Score (wtd): 2.00 | Industry norm: 1.3','Raw score: 1.0 | Weight: 5%']},
+ 'm_b_conc':{badge:'0.51 | 4.00 | 2.7',lines:['Buyer Concentration (Top3): 0.51 = 51%','Score (wtd): 4.00 | Industry norm: 2.7','Raw score: 1.0 | Weight: 10%']},
+ 'm_terms':{badge:'TBC payment terms',lines:['Payment terms: TBC']},
+ 'm_hs_buyer':{badge:'111 buyers · 1688',lines:['HS buyer mapping via 1688:','111 buyers | 23,353 downstream txns']},
 }
  },
 
  banatoys:{
   name:'Banatoys',cls:'banatoys',
   nodes:{
-  // ── PROCUREMENT SOURCES ──
-  's_tp_p':{badge:'HK trading intel',lines:['3rd Party / AI:','HK trading company — sourced from mainland China','Buyer mapping via trade databases']},
-  // ── PRODUCTION SOURCES ──
-  's_insp':{badge:'Inspection active',lines:['Inspection Report: ACTIVE']},
-  's_fs_pr':{badge:'~500w · 8yr',lines:['Field Survey / FS:','Workers: <b>~500</b>','Years of operation: <b>8 yrs</b>','HK trading company — manufacturing via China factories','Source: <a href="https://banatoys-intel.pages.dev/" target="_blank">banatoys-intel.pages.dev</a>']},
-  // ── PRODUCTION METRICS ──
-  'm_capacity':{badge:'~500w · 8yr',lines:['<b>~500 workers</b>','<b>8 years of operation</b>','HK trading company — China manufacturing']},
-  'm_pass_rate':{badge:'97.9% | Wtd 4.52 | norm 5.1',lines:['<b>1st Pass Rate: 97.92%</b>','Supplier Wtd score: <b>4.52</b>','Industry norm (avg): <b>5.1</b>','Score: 0.67/1.0']},
-  'm_defect':{badge:'0.75% | Wtd 2.51 | norm 2.5',lines:['<b>Defect Rate: 0.75%</b>','Supplier Wtd score: <b>2.51</b>','Industry norm (avg): <b>2.5</b>','At industry norm level']},
-  'm_compliance':{badge:'SEDEX·ISO·OEKO',lines:['Factory compliance:','<b>SEDEX · ISO 9001 · OEKO-TEX</b>','BCI · WRAP · ZDHC']},
-  // ── DELIVERY SOURCES ──
-  's_td_d':{badge:'51 inv · 200 ships',lines:['PO / Invoice / Shipment:','<b>Invoices: 51</b>','<b>FR records: 47</b>','<b>Shipments: ~200</b>','<b>8 destination countries</b>','OTD avg delay: <b>12.07 days</b> ⚠️']},
-  's_tp_d':{badge:'HK routing data',lines:['3rd Party / AI delivery intel:','Trade routing from HK → global']},
-  // ── DELIVERY METRICS ──
-  'm_otd':{badge:'12.07d | Wtd 7.43 | norm 17.8',lines:['<b>OTD Rate: TBC</b>','Avg delay: <b>12.07 days</b> ⚠️','Supplier Wtd score: <b>7.43</b>','Industry norm (avg): <b>17.8</b>','⚠️ Significantly above industry norm']},
-  'm_dif':{badge:'97.9% | Wtd 4.3 | norm 4.5',lines:['<b>Delivery in Full: 97.92%</b>','Supplier Wtd score: <b>~4.3</b>','Industry norm (avg): <b>4.5</b>']},
-  'm_freq':{badge:'51 inv · 8 countries',lines:['Shipping frequency:','<b>51 invoices · 200 shipments</b>','<b>8 export destination countries</b>']},
-  'm_dest':{badge:'8 countries',lines:['Destination mix:','<b>8 destination countries</b>','HK → global distribution']},
-  // ── PAYMENT SOURCES ──
-  's_td_pay':{badge:'51 inv · 47 FR · $15M',lines:['PO / Invoice (FR data):','<b>Invoices: 51</b>','<b>FR records financed: 47</b>','<b>Sales Turnover: USD 15M</b>','Payment terms: <b>120 days</b>']},
-  's_cust_pay':{badge:'23 buyers · Top3=55%',lines:['Payment/buyer data:','<b>No. of buyers: 23</b>','Buyer concentration (Top3): <b>55%</b>']},
-  // ── PAYMENT METRICS ──
-  'm_pay_p':{badge:'0 claims',lines:['<b>Claim Rate: 0</b>','Payment discipline: Good']},
-  'm_claim':{badge:'0 | Wtd 6.75 | norm 13.5',lines:['<b>Claim Rate: 0</b>','Supplier Wtd score: <b>6.75</b>','Industry norm (avg): <b>13.5</b>']},
-  'm_b_count':{badge:'23 buyers | Wtd 2.00 | norm 1.3',lines:['<b>No. of buyers: 23 (internal) / 79 (network)</b>','Supplier Wtd score: <b>2.00</b>','Industry norm (avg): <b>1.3</b>']},
-  'm_b_conc':{badge:'Top3=55% | Wtd 4.00 | norm 2.7',lines:['<b>Buyer concentration (Top3): 55%</b>','Supplier Wtd score: <b>4.00</b>','Industry norm (avg): <b>2.7</b>']},
-  'm_terms':{badge:'120d | Wtd 0 | norm 1.3',lines:['<b>Payment terms: 120 days</b>','Supplier Wtd score: <b>0</b>','Industry norm (avg): <b>1.3</b>']},
+ // PROCUREMENT SOURCES
+ 's_tp_p':{badge:'HK trading intel',lines:['3rd Party/AI:','HK trading — sourced via mainland China factories']},
+ // PRODUCTION SOURCES
+ 's_insp':{badge:'Inspection ACTIVE',lines:['Inspection Report: ACTIVE']},
+ 's_fs_pr':{badge:'~500w · 8yr · HK',lines:['Field Survey / FS:','Workers: ~500 | 8 yrs ops','HK trading company — via China factories','→ <a href=https://banatoys-intel.pages.dev/ target=_blank>banatoys-intel.pages.dev</a>']},
+ // PRODUCTION METRICS
+ 'm_capacity':{badge:'~500w · 8yr',lines:['~500 workers | 8 yrs ops','HK trading company | norm: —']},
+ 'm_pass_rate':{badge:'97.9% | 4.52 | 5.1',lines:['1st Pass Rate: 97.92%','Score (wtd): 4.52 | Industry norm: 5.1','Raw score: 0.67 | Weight: 45%']},
+ 'm_defect':{badge:'0.75% | 2.51 | 2.5',lines:['Defect Rate: 0.75%','Score (wtd): 2.51 | Industry norm: 2.5','Raw score: 0.67 | Weight: 25%','At industry norm level']},
+ 'm_compliance':{badge:'SEDEX·ISO·OEKO',lines:['Factory compliance:','SEDEX · ISO 9001 · OEKO-TEX · BCI · WRAP']},
+ // DELIVERY SOURCES
+ 's_td_d':{badge:'51 inv · 200 ships · 8 dest',lines:['PO / Invoice / Shipment:','Invoices: 51 | FR records: 47','Shipments: ~200 | 8 destination countries','OTD avg delay: 12.07 days ⚠️']},
+ 's_tp_d':{badge:'HK routing data',lines:['3rd Party/AI delivery:','HK → global trade routing']},
+ // DELIVERY METRICS
+ 'm_otd':{badge:'12.07d | 7.43 | 17.8',lines:['Shipment Delay Days: 12.07 days ⚠️','Score (wtd): 7.43 | Industry norm: 17.8','Raw score: 0.33 | Weight: 50%','⚠️ Significantly above industry norm']},
+ 'm_dif':{badge:'97.9% | 4.3 | 4.5',lines:['Delivery in Full: 97.92%','Score (wtd): 4.3 | Industry norm: 4.5','Raw score: 0.67 | Weight: 10%']},
+ 'm_freq':{badge:'51 inv · 8 countries',lines:['Shipping frequency:','51 invoices | ~200 shipments','8 export destination countries']},
+ 'm_dest':{badge:'8 countries',lines:['Destination mix:','8 export destination countries','HK → global distribution']},
+ // PAYMENT SOURCES
+ 's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 12 (score 1.0 | wtd 0 | norm 1.3)','Txn Volatility: 68.14% (score 1.0 | wtd 2.0 | norm 1.3)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
+ 's_td_pay':{badge:'51 inv · 47 FR · $15M',lines:['PO / Invoice (Payment):','No. financed buyers: (see buyer count)','No. of invoices: 51','FR records financed: 47','Sales Turnover: USD 15,000,000']},
+ 's_cust_pay':{badge:'23 buyers · Top3=55%',lines:['Payment/buyer data:','No. of buyers: 23 (internal)','Buyer concentration (Top3): 0.55 = 55%']},
+ // PAYMENT METRICS
+ 'm_pay_p':{badge:'0 claims · 120d',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
+ 'm_claim':{badge:'0 | 6.75 | 13.5',lines:['Claim Rate: 0','Score (wtd): 6.75 | Industry norm: 13.5','Raw score: 1.0 | Weight: 15%']},
+ 'm_b_count':{badge:'23 | 2.00 | 1.3',lines:['No. of Buyers: 23 (internal) / 79 network','Score (wtd): 2.00 | Industry norm: 1.3','Raw score: 1.0 | Weight: 5%']},
+ 'm_b_conc':{badge:'0.55 | 4.00 | 2.7',lines:['Buyer Concentration (Top3): 0.55 = 55%','Score (wtd): 4.00 | Industry norm: 2.7','Raw score: 1.0 | Weight: 10%']},
+ 'm_terms':{badge:'120d | 0 | 1.3',lines:['Payment Term: 120 days','Score (wtd): 0 | Industry norm: 1.3','Raw score: — | Weight: 10%']},
 }
  }
 };
