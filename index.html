@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>E2E Data Intelligence Map — Refat Garments Ltd</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#040810;--s1:rgba(10,16,30,.96);--s2:rgba(16,24,44,.88);--bd:rgba(50,72,120,.22);--bd2:rgba(60,88,140,.3);--tx:#c0d4ec;--t2:#8aa0c4;--t3:#4a6488;--wh:#f0f4ff;--ac:#5a9cff;--a2:#88c0ff;--gn:#2edc96;--yl:#ffb83a;--rd:#ff5068;--pp:#a07bff;--cy:#30d4f0;--or:#ff8c42}
+body{font-family:'Inter','SF Pro Display',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.45;font-size:12px;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 10% 10%,rgba(90,156,255,.05),transparent),radial-gradient(ellipse 60% 50% at 90% 90%,rgba(160,123,255,.035),transparent);pointer-events:none}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(90,156,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(90,156,255,.025) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+
+.P{max-width:1640px;margin:0 auto;padding:16px 28px;position:relative;z-index:1}
+
+/* ── HEADER ── */
+.hdr{text-align:center;padding:18px 0 14px;margin-bottom:14px;position:relative}
+.hdr::after{content:'';position:absolute;bottom:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--bd2),var(--ac),var(--bd2),transparent)}
+.hdr h1{font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--wh),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.4px}
+.hdr .sub{font-size:10px;color:var(--t3);margin-top:4px;letter-spacing:.4px}
+.hdr .sub b{color:var(--t2)}
+.tags{display:flex;gap:7px;justify-content:center;margin-top:9px;flex-wrap:wrap}
+.tags span{font-size:8px;color:var(--t3);padding:3px 11px;background:var(--s2);border:1px solid var(--bd);border-radius:20px;transition:all .3s}
+.tags span:hover{border-color:var(--ac);color:var(--t2)}
+
+/* ── STATS ── */
+.stats{display:flex;gap:5px;justify-content:center;margin:10px 0 14px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:5px;padding:5px 12px;background:var(--s1);border:1px solid var(--bd);border-radius:8px;transition:all .3s}
+.stat:hover{border-color:var(--ac);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.stat .ic{font-size:12px}
+.stat .num{font-size:14px;font-weight:800;color:var(--wh)}
+.stat .lbl{font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.6px}
+.stat.partner-stat{border-color:rgba(255,140,66,.3);background:rgba(255,140,66,.06)}
+.stat.partner-stat .num{color:var(--or)}
+
+/* ── FLOW ── */
+.flow-wrap{position:relative;margin-bottom:14px}
+.flow{display:flex;gap:10px;position:relative;z-index:1}
+.flow-line{position:absolute;top:50%;left:5%;right:5%;height:2px;z-index:0;overflow:hidden;transform:translateY(-50%);border-radius:1px}
+.flow-line-bg{width:100%;height:100%;background:linear-gradient(90deg,var(--or),var(--gn),var(--ac),var(--pp));opacity:.14}
+.flow-line-dot{position:absolute;top:-3px;width:50px;height:8px;border-radius:4px;background:linear-gradient(90deg,transparent,rgba(90,156,255,.65),transparent);animation:fp 4s linear infinite}
+@keyframes fp{0%{left:-50px}100%{left:100%}}
+.fnode{flex:1;border-radius:16px;padding:0;text-align:left;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;z-index:1}
+.fnode::after{content:'';position:absolute;inset:0;border-radius:16px;background:var(--s1);border:1.5px solid var(--bd);z-index:-2;transition:all .4s}
+.fnode .accent{position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;opacity:.6;transition:all .4s}
+.fnode:hover .accent,.fnode.on .accent{opacity:1;height:4px}
+.fnode.on::after{border-color:var(--on-bc,rgba(46,220,150,.45));box-shadow:0 0 28px var(--on-bg,rgba(46,220,150,.06))}
+.fnode:hover{transform:translateY(-5px)} .fnode.on{transform:translateY(-2px)}
+
+.fnode-top{display:flex;align-items:center;gap:10px;padding:14px 14px 0}
+.fnode-top .emoji{font-size:24px;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,.04)}
+.fnode-top .info{flex:1;min-width:0}
+.fnode-top .nm{font-size:15px;font-weight:800;color:var(--wh);letter-spacing:-.3px;line-height:1.2}
+.fnode-top .ph{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:8px;display:inline-block;margin-top:3px}
+.ph-pre{background:rgba(255,184,58,.1);color:var(--yl);border:1px solid rgba(255,184,58,.12)}
+.ph-post{background:rgba(46,220,150,.1);color:var(--gn);border:1px solid rgba(46,220,150,.12)}
+
+.fnode-mid{display:flex;align-items:center;gap:12px;padding:12px 14px 10px}
+.donut-wrap{width:56px;height:56px;position:relative;flex-shrink:0}
+.donut-wrap svg{transform:rotate(-90deg);filter:drop-shadow(0 0 4px rgba(90,156,255,.08))}
+.donut-bg{fill:none;stroke:rgba(255,255,255,.04);stroke-width:4}
+.donut-fill{fill:none;stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)}
+.donut-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--wh)}
+.fnode-metrics{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px}
+.fm{text-align:center;padding:4px 0;border-radius:6px;background:rgba(255,255,255,.025)}
+.fm .fmn{font-size:14px;font-weight:800;color:var(--wh);line-height:1}
+.fm .fml{font-size:6.5px;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-top:1px}
+
+.fnode-bottom{padding:0 14px 12px}
+.status-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.03)}
+.seg{height:100%;transition:width .8s ease}
+.seg-g{background:linear-gradient(90deg,#1ab878,var(--gn))}
+.seg-y{background:linear-gradient(90deg,#e89e20,var(--yl))}
+.seg-r{background:linear-gradient(90deg,#e0384e,var(--rd))}
+.fnode-legend{display:flex;gap:10px;margin-top:5px;justify-content:center}
+.fnode-legend span{font-size:7px;color:var(--t3);display:flex;align-items:center;gap:3px}
+.fnode-legend .ld{width:5px;height:5px;border-radius:50%}
+
+/* ── DETAIL GRID ── */
+.gw{position:relative;min-height:60px;overflow:hidden}
+.G{display:grid;grid-template-columns:1fr 1.4fr 1fr .7fr;column-gap:28px;position:relative;padding:8px 0;animation:fadeUp .45s cubic-bezier(.4,0,.2,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+svg.L{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+svg.L path{fill:none;stroke-width:1;opacity:.1;transition:all .35s}
+svg.L path.hi{opacity:.75;stroke-width:2.2;filter:drop-shadow(0 0 6px rgba(90,156,255,.35))}
+svg.L path.dim{opacity:.015}
+svg.L path.draw{stroke-dasharray:1200;stroke-dashoffset:1200;animation:drawIn .9s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes drawIn{to{stroke-dashoffset:0}}
+
+.col{position:relative;z-index:1;display:flex;flex-direction:column}
+.col-title{font-size:7.5px;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;color:var(--t3);margin-bottom:8px;text-align:center;padding-bottom:5px;position:relative;display:flex;align-items:center;justify-content:center;gap:5px;flex-shrink:0}
+.col-title::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
+.ct-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;box-shadow:0 0 5px currentColor}
+.col-items{display:flex;flex-direction:column;gap:4px;flex:1}
+
+/* ── NODES — UNIFORM HEIGHT ── */
+.n{border-radius:8px;cursor:pointer;transition:all .3s;position:relative;display:flex;align-items:center}
+.n.dim{opacity:.06;pointer-events:none;transform:scale(.98)}
+.n.hi{box-shadow:0 0 0 1.5px rgba(90,156,255,.45),0 4px 16px rgba(0,0,0,.3);transform:scale(1.01)}
+
+/* Source */
+.src{background:linear-gradient(135deg,rgba(16,26,48,.92),rgba(24,36,60,.78));border:1px solid rgba(48,68,106,.28);backdrop-filter:blur(8px);gap:7px;padding:0 10px;border-left:3px solid var(--t3);min-height:36px}
+.src:hover{border-color:rgba(90,156,255,.3);background:linear-gradient(135deg,rgba(22,34,58,.95),rgba(30,44,70,.85))}
+.src .nm{font-weight:600;color:var(--wh);font-size:10.5px;flex:1;line-height:1.3}
+.src-g{border-left-color:var(--gn)} .src-y{border-left-color:var(--yl)} .src-r{border-left-color:var(--rd)}
+
+/* Partner Opportunity — source */
+.src.po{border-left-color:var(--or)!important;background:linear-gradient(135deg,rgba(32,18,8,.92),rgba(44,26,10,.78))!important;border-color:rgba(255,140,66,.2)!important}
+.src.po:hover{background:linear-gradient(135deg,rgba(44,24,10,.95),rgba(58,32,12,.88))!important;border-color:rgba(255,140,66,.4)!important}
+/* Partner Opportunity — risk dim */
+.rdim.po{border-left-color:var(--or)!important;background:rgba(255,140,66,.06)!important;color:#ffaa60!important}
+.rdim.po:hover{filter:brightness(1.15);transform:translateX(2px)}
+
+.st-pill{font-size:6.5px;font-weight:800;padding:2px 6px;border-radius:8px;flex-shrink:0;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.st-g{background:rgba(46,220,150,.14);color:var(--gn)}
+.st-y{background:rgba(255,184,58,.14);color:var(--yl)}
+.st-r{background:rgba(255,80,104,.14);color:var(--rd);animation:pBadge 2.5s ease infinite}
+@keyframes pBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,80,104,.2)}50%{box-shadow:0 0 0 4px rgba(255,80,104,0)}}
+
+/* Partner badge pill */
+.po-badge{font-size:6px;font-weight:800;padding:1.5px 5px;border-radius:7px;background:rgba(255,140,66,.2);color:var(--or);border:1px solid rgba(255,140,66,.3);white-space:nowrap;flex-shrink:0;letter-spacing:.3px}
+
+/* Metric */
+.met{background:rgba(10,18,36,.65);border:1px solid rgba(255,255,255,.05);border-left:2px solid rgba(48,212,240,.28);color:var(--tx);font-size:9.5px;padding:0 10px;backdrop-filter:blur(6px);min-height:36px;line-height:1.35}
+.met:hover{border-color:rgba(48,212,240,.3);background:rgba(16,26,48,.8)}
+.met.hi{background:rgba(90,156,255,.07);border-color:rgba(90,156,255,.25);border-left-color:var(--ac);color:var(--a2)}
+
+/* Dimension */
+.rdim{font-weight:600;font-size:10px;border-left:3px solid;padding:0 10px;min-height:36px;line-height:1.3}
+.rdim-g{background:rgba(46,220,150,.05);border-color:var(--gn);color:#48e8a8}
+.rdim-y{background:rgba(255,184,58,.05);border-color:var(--yl);color:#ffc858}
+.rdim-r{background:rgba(255,80,104,.05);border-color:var(--rd);color:#ff7088}
+.rdim:hover{filter:brightness(1.15);transform:translateX(2px)}
+
+/* Scorecard */
+.sc-n{background:linear-gradient(135deg,rgba(14,24,44,.9),rgba(22,34,58,.72));border:1px solid rgba(48,68,106,.28);text-align:left;backdrop-filter:blur(8px);padding:10px 8px;border-radius:10px;border-left:3px solid var(--gn);cursor:pointer;transition:all .3s;min-height:0}
+.sc-n h4{font-size:10.5px;font-weight:800;color:var(--wh);margin-bottom:1px;letter-spacing:-.1px}
+.sc-n .wt{font-size:8px;color:var(--t3);font-weight:600}
+.sc-n .bar{height:5px;border-radius:3px;background:rgba(255,255,255,.035);margin-top:5px;overflow:hidden}
+.sc-n .fill{height:100%;border-radius:3px;transition:width .8s ease}
+.sc-n:hover{border-color:rgba(90,156,255,.25);box-shadow:0 3px 12px rgba(0,0,0,.2);transform:translateY(-1px)}
+.sc-n.hi{border-color:rgba(90,156,255,.4);box-shadow:0 0 16px rgba(90,156,255,.08)}
+.sc-n.dim,.n.dim{opacity:.06;pointer-events:none}
+/* Scorecard attrs */
+.sc-attrs{margin-top:7px;padding-top:6px;border-top:1px solid rgba(255,255,255,.06)}
+.sc-attr-item{display:flex;align-items:center;gap:3px;padding:2px 0;line-height:1.3}
+.sc-attr-name{font-size:8px;color:var(--t2);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sc-attr-wt{font-size:8px;font-weight:700;color:var(--ac);flex-shrink:0;min-width:30px;text-align:right}
+.sc-attr-new{font-size:6.5px;font-weight:800;color:#ffb83a;background:rgba(255,184,58,.12);border:1px solid rgba(255,184,58,.3);border-radius:3px;padding:1px 3px;flex-shrink:0;letter-spacing:.3px}
+/* Product Toggle */
+.prod-toggle{display:flex;gap:6px;justify-content:center;margin:10px 0 14px}
+.prod-btn{font-size:9px;font-weight:700;padding:5px 14px;border-radius:20px;border:1px solid var(--bd);background:var(--s2);color:var(--t3);cursor:pointer;transition:all .25s;letter-spacing:.3px;text-transform:uppercase}
+.prod-btn.active{background:rgba(90,156,255,.15);border-color:rgba(90,156,255,.5);color:var(--a2);box-shadow:0 0 10px rgba(90,156,255,.1)}
+.prod-btn:hover:not(.active){border-color:var(--bd2);color:var(--t2)}
+
+/* ── PARTNER OPPORTUNITY PANEL ── */
+.partner-panel{margin-top:20px;background:linear-gradient(135deg,rgba(255,140,66,.03),rgba(255,140,66,.01));border:1px solid rgba(255,140,66,.18);border-radius:14px;padding:16px 20px;position:relative;overflow:hidden}
+.partner-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--or),#ffb83a,var(--or),transparent);opacity:.6}
+.partner-panel-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.partner-panel-hdr .pp-icon{font-size:18px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,140,66,.12);border-radius:10px;border:1px solid rgba(255,140,66,.2)}
+.partner-panel-hdr .pp-title{font-size:13px;font-weight:800;color:var(--or);letter-spacing:-.2px}
+.partner-panel-hdr .pp-sub{font-size:9px;color:var(--t2);margin-top:2px;line-height:1.4}
+.partner-panel-hdr .pp-legend{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:8px;color:var(--t3)}
+.partner-zones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pz{background:rgba(255,255,255,.025);border:1px solid rgba(255,140,66,.12);border-left:3px solid var(--or);border-radius:10px;padding:12px 14px;transition:all .3s}
+.pz:hover{border-color:rgba(255,140,66,.3);background:rgba(255,140,66,.04);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.pz-stage-badge{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--or);opacity:.75;margin-bottom:5px;display:flex;align-items:center;gap:4px}
+.pz-title{font-size:12px;font-weight:800;color:var(--wh);margin-bottom:6px;letter-spacing:-.2px}
+.pz-desc{font-size:8.5px;color:var(--t2);line-height:1.5;margin-bottom:8px}
+.pz-items{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px}
+.pz-source-tag{font-size:7px;padding:2px 7px;border-radius:6px;background:rgba(255,140,66,.12);color:var(--or);border:1px solid rgba(255,140,66,.2);font-weight:600}
+.pz-gap-tag{font-size:7px;padding:2px 7px;border-radius:6px;background:rgba(255,80,104,.1);color:#ff7088;border:1px solid rgba(255,80,104,.18);font-weight:600}
+.pz-dim-tag{font-size:7px;padding:2px 7px;border-radius:6px;background:rgba(160,123,255,.12);color:#c4a4ff;border:1px solid rgba(160,123,255,.2);font-weight:600}
+.pz-footer{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,140,66,.1);font-size:8px;color:var(--t3);display:flex;align-items:center;gap:5px}
+.pz-footer .pz-partner-type{color:var(--or);font-weight:700}
+
+/* ── TOOLTIP ── */
+.tip{position:fixed;z-index:999;padding:9px 13px;background:rgba(6,12,24,.95);border:1px solid var(--bd2);border-radius:9px;font-size:10px;color:var(--tx);pointer-events:none;opacity:0;transition:opacity .15s;max-width:260px;backdrop-filter:blur(16px);box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.tip.show{opacity:1}
+.tip h5{color:var(--wh);font-size:10.5px;font-weight:700;margin-bottom:2px}
+.tip .tl{color:var(--t3);font-size:7.5px;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+.tip .td{color:var(--t2);font-size:9px;margin-top:2px}
+.tip .feeds{margin-top:3px;padding-top:3px;border-top:1px solid var(--bd)}
+.tip .feeds span{display:inline-block;font-size:7.5px;padding:1.5px 5px;border-radius:5px;margin:1px;background:rgba(90,156,255,.1);color:var(--a2)}
+
+.rm{text-align:center;font-size:8px;color:var(--t3);margin-top:6px;opacity:0;transition:opacity .3s}
+.rm.show{opacity:1}
+
+@media(max-width:1100px){.G{grid-template-columns:1fr 1.2fr 1fr .8fr;column-gap:18px}.partner-zones{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.G{grid-template-columns:1fr;row-gap:16px} .flow{flex-wrap:wrap}.partner-zones{grid-template-columns:1fr}}
+
+/* ── SUPPLIER SELECTOR ── */
+.sup-selector{display:flex;gap:8px;justify-content:center;margin:8px 0 14px;flex-wrap:wrap;padding:10px 18px;background:rgba(6,12,24,.7);border:1px solid rgba(50,72,120,.25);border-radius:12px;position:relative;z-index:2}
+.sup-selector::before{content:'SUPPLIER VIEW';position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:7px;font-weight:800;letter-spacing:1.4px;color:#4a6488;background:var(--bg);padding:0 8px;text-transform:uppercase}
+.sup-btn{font-size:9px;font-weight:700;padding:5px 14px;border-radius:20px;border:1px solid rgba(50,72,120,.4);background:rgba(10,18,36,.6);color:#4a6488;cursor:pointer;transition:all .25s;letter-spacing:.3px}
+.sup-btn:hover:not(.active){border-color:rgba(90,156,255,.3);color:var(--t2)}
+.sup-btn.active{font-weight:800}
+.sup-btn[data-sup="default"].active{border-color:rgba(90,156,255,.5);color:var(--a2);background:rgba(90,156,255,.1)}
+.sup-btn[data-sup="mybari"].active{border-color:rgba(249,115,22,.6);color:#f97316;background:rgba(249,115,22,.1);box-shadow:0 0 10px rgba(249,115,22,.08)}
+.sup-btn[data-sup="gulahmed"].active{border-color:rgba(34,211,238,.6);color:#22d3ee;background:rgba(34,211,238,.1);box-shadow:0 0 10px rgba(34,211,238,.08)}
+.sup-btn[data-sup="banatoys"].active{border-color:rgba(168,85,247,.6);color:#a855f7;background:rgba(168,85,247,.1);box-shadow:0 0 10px rgba(168,85,247,.08)}
+
+/* ── OVERLAY BADGES ── */
+.ov-badge{position:absolute;top:3px;right:3px;font-size:6.5px;font-weight:800;padding:2px 5px;border-radius:5px;pointer-events:none;z-index:10;white-space:nowrap;line-height:1.3;letter-spacing:.15px;max-width:75%}
+.ov-badge.mybari{background:rgba(249,115,22,.92);color:#fff;border:1px solid rgba(249,115,22,.4)}
+.ov-badge.gulahmed{background:rgba(34,211,238,.92);color:#022c36;border:1px solid rgba(34,211,238,.4)}
+.ov-badge.banatoys{background:rgba(168,85,247,.92);color:#fff;border:1px solid rgba(168,85,247,.4)}
+
+/* Glow for nodes with supplier data */
+.ov-hi.mybari{box-shadow:0 0 0 1.5px rgba(249,115,22,.45),0 3px 14px rgba(249,115,22,.08)!important;opacity:1!important}
+.ov-hi.gulahmed{box-shadow:0 0 0 1.5px rgba(34,211,238,.45),0 3px 14px rgba(34,211,238,.08)!important;opacity:1!important}
+.ov-hi.banatoys{box-shadow:0 0 0 1.5px rgba(168,85,247,.45),0 3px 14px rgba(168,85,247,.08)!important;opacity:1!important}
+
+/* Dim nodes without supplier data */
+.ov-dim{opacity:0.3!important;filter:grayscale(40%)}
+
+/* Overlay detail popup */
+.ov-popup{position:fixed;z-index:1001;padding:10px 14px;background:rgba(4,8,16,.97);border-radius:10px;font-size:9.5px;color:#c0d4ec;pointer-events:none;max-width:260px;backdrop-filter:blur(16px);box-shadow:0 8px 28px rgba(0,0,0,.65)}
+.ov-popup.mybari{border:1px solid rgba(249,115,22,.4)}
+.ov-popup.gulahmed{border:1px solid rgba(34,211,238,.4)}
+.ov-popup.banatoys{border:1px solid rgba(168,85,247,.4)}
+.ov-popup-hdr{font-size:10.5px;font-weight:800;color:#f0f4ff;margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:5px}
+.ov-popup-node{font-size:8px;font-weight:700;color:#8aa0c4;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.ov-popup-line{padding:2px 0;color:#8aa0c4;font-size:9px;line-height:1.4}
+.ov-popup-line b{color:#c0d4ec}
+</style></head><body>
+<div class="P">
+<div class="hdr">
+<h1>E2E Supply Chain Data Intelligence Map</h1>
+<div class="sub"><b>Refat Garments Ltd</b> &nbsp;·&nbsp; Data Source → Extracted Insight → Risk Dimension → Scorecard Module</div>
+<div class="tags"><span>Lane A–D Trades</span><span>Q4 2025 – Q1 2026</span><span>Supply Chain Insights &amp; Risk Model</span><span>Refat Garments Ltd — Bangladesh</span></div>
+</div>
+
+<!-- Supplier Selector Strip -->
+<div class="sup-selector" id="supSelector">
+  <button class="sup-btn active" data-sup="default" onclick="setSup('default')">🗺 Default View</button>
+  <button class="sup-btn" data-sup="mybari" onclick="setSup('mybari')">🟠 M.Y. Bari</button>
+  <button class="sup-btn" data-sup="gulahmed" onclick="setSup('gulahmed')">🔵 Gul Ahmed</button>
+  <button class="sup-btn" data-sup="banatoys" onclick="setSup('banatoys')">🟣 Banatoys</button>
+</div>
+
+<div class="stats" id="statsBar"></div>
+<div class="prod-toggle">
+<button class="prod-btn active" id="btn_arp" onclick="setProd('arp')">💳 ARP (Post-Shipment)</button>
+<button class="prod-btn" id="btn_pre" onclick="setProd('pre')">🏭 Pre-Shipment Loan</button>
+</div>
+<div class="flow-wrap">
+<div class="flow-line"><div class="flow-line-bg"></div><div class="flow-line-dot"></div></div>
+<div id="fb" class="flow"></div>
+</div>
+<div class="gw" id="gw"></div>
+<p class="rm" id="rm">Click empty area to reset</p>
+
+<!-- Partner Opportunity Panel -->
+<div class="partner-panel" id="partnerPanel"></div>
+
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const C={
+stages:[
+{id:'procurement',name:'Procurement',phase:'pre',coverage:50,emoji:'📦',accent:'linear-gradient(90deg,#ff8c42,#ffb83a)',
+sources:[
+{id:'bom',name:'BOM / PO',st:'partial',feeds:['rm_comp','sup_map','designated','fund_use','commodity'],tip:'Bill of Materials & Purchase Orders — material specs, designated suppliers, pricing'},
+{id:'cust_p',name:'Customs Data (↑↓)',st:'active',feeds:['concentration','sup_map','hs_upstream'],tip:'Upstream & downstream customs — HS codes, supplier transactions, sourcing concentration, origin/destination countries'},
+{id:'tp_p',name:'3rd Party / AI',st:'active',feeds:['sup_map','concentration','commodity'],tip:'External databases, AI-enriched supplier data, market intelligence'},
+{id:'fs_p',name:'Field Survey',st:'partial',partner:true,pNote:'On-ground supplier verification partner for raw material sourcing audits and factory visits',feeds:['sup_map','designated'],tip:'On-ground factory visits and supplier verification'},
+{id:'rmcert',name:'RM Certification',st:'partial',partner:true,pNote:'RM traceability & certification data partner (OEKO-TEX, BCI, GOTS) — internal data coverage is limited',feeds:['cert_cov','rm_comp'],tip:'Raw material certifications — OEKO-TEX, BCI, GOTS (In Progress per BOM/Upstream mapping)'}
+],
+metrics:[
+{id:'rm_comp',name:'RM composition & BOM structure',feeds:['rm_risk','rm_compl']},
+{id:'sup_map',name:'Upstream supplier mapping & tenure',feeds:['sup_stab','rm_risk']},
+{id:'designated',name:'Designated vs non-designated supplier',feeds:['fund_val','sup_stab']},
+{id:'concentration',name:'Sourcing concentration (country / supplier)',feeds:['rm_risk','sup_conc']},
+{id:'cert_cov',name:'RM certification coverage %',feeds:['rm_compl']},
+{id:'commodity',name:'Commodity price trends',feeds:['rm_risk']},
+{id:'fund_use',name:'Procurement intent / fund usage',feeds:['fund_val']},
+{id:'hs_upstream',name:'HS code & upstream trade classification',feeds:['rm_compl','rm_risk']},
+],
+dimensions:[
+{id:'rm_risk',name:'Raw Material Risk',st:'partial',partner:true,pNote:'RM data is incomplete without a certified supplier network / traceability partner',sc:'production'},
+{id:'sup_conc',name:'Supply Concentration',st:'partial',sc:'production'},
+{id:'rm_compl',name:'RM Compliance & Cert',st:'gap',partner:true,pNote:'Certification verification requires external accredited body or platform partner',sc:'qaqc'},
+{id:'sup_stab',name:'Supplier Stability',st:'partial',sc:'production'},
+{id:'fund_val',name:'Fund Usage Validation',st:'gap',sc:'production'}
+]},
+{id:'production',name:'Production',phase:'pre',coverage:55,emoji:'🏭',accent:'linear-gradient(90deg,#ffb83a,#2edc96)',
+sources:[
+{id:'wip',name:'WIP Report',st:'partial',feeds:['milestones','ontrack'],tip:'Work-In-Progress — RM arrival, cut/sew/finish milestones, FRI date, on-track status (all In Progress per field mapping)'},
+{id:'ta',name:'TA Report',st:'partial',feeds:['compliance','complexity','prod_setup','workforce'],tip:'Technical Assessment — factory setup, machinery, workforce, process capability, certifications, product categories'},
+{id:'insp',name:'Inspection Report',st:'active',feeds:['pass_rate','defect','complexity','lab_test'],tip:'QA/QC inspection — 1st pass rate, defect analysis, lab testing, factory certifications'},
+{id:'lab_testing',name:'Lab Testing',st:'partial',partner:true,pNote:'Certified 3rd-party lab partner needed for chemical safety, restricted substances and product compliance testing',feeds:['lab_test','prod_compl','reg_req'],tip:'Third-party lab testing — chemical safety (REACH/OEKO-TEX), restricted substances list, flammability, mechanical safety, product spec verification'},
+{id:'fs_pr',name:'Field Survey / FS',st:'partial',feeds:['capacity','compliance','complexity'],tip:'On-site factory surveys — capacity, compliance checks'},
+{id:'soc_audit',name:'Social Compliance Audit',st:'gap',feeds:['soc_check'],tip:'Social audit — fire safety, emergency exits, child labour, worker rights, needle/sharp tool control'}
+],
+metrics:[
+{id:'milestones',name:'Production milestones (RM→Cut→Sew→Finish)',feeds:['prod_ontrack','preship']},
+{id:'ontrack',name:'On-track status per node',feeds:['prod_ontrack','preship']},
+{id:'capacity',name:'Capacity: workers / machines / lines',feeds:['cap_val']},
+{id:'pass_rate',name:'1st pass rate',feeds:['quality','insp_tol']},
+{id:'defect',name:'Defect ratio & root cause',feeds:['quality','insp_tol']},
+{id:'compliance',name:'Factory compliance & certs',feeds:['cap_val','soc_compl','prod_ontrack']},
+{id:'complexity',name:'Product complexity assessment',feeds:['prod_cplx']},
+{id:'prod_setup',name:'Factory setup, machinery & process capability',feeds:['cap_val','prod_ontrack']},
+{id:'workforce',name:'Workforce capacity & labour detail',feeds:['cap_val','soc_compl']},
+{id:'lab_test',name:'Lab testing & safety compliance',feeds:['quality','soc_compl','prod_compl_reg']},
+{id:'prod_compl',name:'Product compliance testing results',feeds:['prod_compl_reg']},
+{id:'reg_req',name:'Regulatory & market requirements coverage',feeds:['prod_compl_reg']},
+{id:'soc_check',name:'Social compliance assessment',feeds:['soc_compl']}
+],
+dimensions:[
+{id:'prod_ontrack',name:'Production On-Track',st:'partial',sc:'production'},
+{id:'cap_val',name:'Capacity Validation',st:'partial',sc:'production'},
+{id:'quality',name:'Quality Consistency',st:'good',sc:'qaqc'},
+{id:'insp_tol',name:'Inspection Tolerance',st:'good',sc:'qaqc'},
+{id:'prod_cplx',name:'Product Complexity',st:'partial',sc:'qaqc'},
+{id:'prod_compl_reg',name:'Product Compliance & Regulation',st:'partial',partner:true,pNote:'Multi-market regulatory expertise needed — EU REACH, US CPSC, UK product safety standards',sc:'qaqc'},
+{id:'soc_compl',name:'Social Compliance',st:'gap',sc:'qaqc'},
+{id:'preship',name:'Pre-Shipment Readiness',st:'gap',sc:'production'}
+]},
+{id:'delivery',name:'Delivery',phase:'post',coverage:85,emoji:'🚢',accent:'linear-gradient(90deg,#5a9cff,#30d4f0)',
+sources:[
+{id:'td_d',name:'PO / Invoice / Shipment',st:'active',feeds:['otd','dif','lead_t','freq','ship_mode'],tip:'PO detail, invoice detail, shipment info — OTD, DIF%, lead time, shipping mode, quantities'},
+{id:'cust_d',name:'Customs Data (↑↓)',st:'active',feeds:['freq','dest','tariff','season'],tip:'Upstream & downstream customs — HS codes, destinations, tariff classification, seasonal patterns'},
+{id:'tp_d',name:'3rd Party / AI',st:'active',feeds:['route','tariff','season'],tip:'Shipping intelligence, route disruption, tariff databases'},
+{id:'carrier',name:'Carrier / Vessel API',st:'gap',partner:true,pNote:'Real-time logistics & carrier tracking partner needed — vessel ETA, port congestion, route monitoring',feeds:['tat','route'],tip:'Real-time vessel tracking, ETA, port congestion'}
+],
+metrics:[
+{id:'otd',name:'OTD rate & avg delay',feeds:['otd_tol','delay_imp']},
+{id:'dif',name:'Delivery in Full % (short/over delivery)',feeds:['dif_perf']},
+{id:'freq',name:'Shipping frequency & volume',feeds:['season_d','delay_imp']},
+{id:'dest',name:'Destination mix & transit mode',feeds:['log_risk','tariff_d']},
+{id:'tat',name:'Turn-Around Time (TAT)',feeds:['delay_imp','log_risk']},
+{id:'lead_t',name:'Lead time by product',feeds:['otd_tol','season_d']},
+{id:'route',name:'Route disruption (Red Sea etc.)',feeds:['log_risk']},
+{id:'tariff',name:'HS code tariff classification',feeds:['tariff_d']},
+{id:'season',name:'Volume seasonality patterns',feeds:['season_d']},
+{id:'ship_mode',name:'Shipping mode mix & logistics cost',feeds:['log_risk']},
+],
+dimensions:[
+{id:'otd_tol',name:'OTD Tolerance',st:'good',sc:'performance'},
+{id:'dif_perf',name:'Delivery in Full (DIF%)',st:'good',sc:'performance'},
+{id:'delay_imp',name:'Delay Impact & Handling',st:'good',sc:'performance'},
+{id:'log_risk',name:'Logistics & Route Risk',st:'partial',partner:true,pNote:'Logistics intelligence platform partner for live route risk, port disruption and freight data',sc:'performance'},
+{id:'tariff_d',name:'Tariff & Compliance',st:'partial',sc:'buyer_supplier'},
+{id:'season_d',name:'Seasonality Pattern',st:'partial',sc:'performance'}
+]},
+{id:'payment',name:'Payment',phase:'post',coverage:90,emoji:'💰',accent:'linear-gradient(90deg,#a07bff,#d06bff)',
+sources:[
+{id:'bank',name:'Bank Statement',st:'active',feeds:['pay_p','claim','terms','dilution'],tip:'Bank records — payment timing, amounts, claim deductions, dilution history'},
+{id:'td_pay',name:'PO / Invoice',st:'active',feeds:['pay_p','terms','b_count','dilution'],tip:'PO detail, invoices, credit notes — payment terms, OTP analysis, dilution, buyer identification'},
+{id:'cust_pay',name:'Customs Data (↑↓)',st:'active',feeds:['b_count','b_conc','hs_buyer','buyer_hs_rev'],tip:'Upstream & downstream customs — buyer mapping, HS codes, trade volumes per buyer'},
+{id:'tp_pay',name:'3rd Party / AI',st:'active',feeds:['b_credit','b_conc'],tip:'Credit scoring, buyer financial health, market intelligence'},
+{id:'fin',name:'Financial Statement',st:'gap',feeds:['fin_ratio'],tip:'Audited financials — P&L, balance sheet, cash flow'}
+],
+metrics:[
+{id:'pay_p',name:'Payment punctuality & discipline',feeds:['pay_disc']},
+{id:'claim',name:'Claim ratio & root cause',feeds:['claim_rc','pay_disc']},
+{id:'b_count',name:'Buyer count & brand tier',feeds:['buyer_dep','b_cred_d']},
+{id:'b_conc',name:'Buyer concentration (HHI)',feeds:['buyer_dep']},
+{id:'terms',name:'Payment terms & method',feeds:['coll_risk']},
+{id:'b_credit',name:'Buyer credit quality signals',feeds:['b_cred_d']},
+{id:'fin_ratio',name:'Key financial ratios',feeds:['fin_h']},
+{id:'dilution',name:'Dilution risk & invoice adjustments',feeds:['pay_disc','claim_rc']},
+{id:'hs_buyer',name:'HS code & buyer transaction mapping',feeds:['b_cred_d','buyer_dep']},
+{id:'buyer_hs_rev',name:'Buyer revenue by HS product category',feeds:['buyer_dep','b_cred_d']}
+],
+dimensions:[
+{id:'pay_disc',name:'Payment Discipline',st:'good',sc:'performance'},
+{id:'buyer_dep',name:'Buyer Dependency',st:'good',sc:'buyer_supplier'},
+{id:'claim_rc',name:'Claim Root Cause',st:'good',sc:'performance'},
+{id:'coll_risk',name:'Collection & Term Risk',st:'partial',sc:'performance'},
+{id:'b_cred_d',name:'Buyer Credit Quality',st:'partial',sc:'buyer_supplier'},
+{id:'fin_h',name:'Financial Health',st:'gap',sc:'buyer_supplier'}
+]}
+],
+scorecard:[
+{id:'performance',name:'Performance',cov:82,color:'#2edc96',
+ wts:{arp:'40%',pre:'30%'},
+ attrs:{
+  arp:[{n:'OTD',w:'60%'},{n:'DIF',w:'10%'},{n:'Claim Ratio',w:'30%'}],
+  pre:[{n:'OTD',w:'75%'},{n:'DIF',w:'5%'},{n:'Claim Ratio',w:'20%'}]
+ }},
+{id:'buyer_supplier',name:'Buyer / Supplier',cov:90,color:'#2edc96',
+ wts:{arp:'35%',pre:'35%'},
+ attrs:{
+  arp:[{n:'Txn Volatility',w:'5%'},{n:'Core Buyer Lost Ratio',w:'10%'},{n:'Well Known Brands',w:'10%'},{n:'Buyer Concentration',w:'10%'},{n:'No. of Buyers',w:'5%'},{n:'Annual Turnover',w:'5%'},{n:'Txn Frequency',w:'10%'},{n:'Payment Term',w:'10%'},{n:'Product Focus',w:'10%'},{n:'Yrs of Operation',w:'15%'},{n:'Length of Relationship',w:'10%'}],
+  pre:[{n:'Txn Volatility',w:'5%'},{n:'Core Buyer Lost Ratio',w:'10%'},{n:'Well Known Brands',w:'10%'},{n:'Buyer Concentration',w:'10%'},{n:'No. of Buyers',w:'5%'},{n:'Annual Turnover',w:'5%'},{n:'Txn Frequency',w:'10%'},{n:'Payment Term',w:'10%'},{n:'Product Focus',w:'10%'},{n:'Yrs of Operation',w:'15%'},{n:'Length of Relationship',w:'10%'}]
+ }},
+{id:'qaqc',name:'QA / QC',cov:85,color:'#2edc96',
+ wts:{arp:'15%',pre:'10%'},
+ attrs:{
+  arp:[{n:'Product Risk',w:'12.5%'},{n:'Order Size',w:'12.5%'},{n:'Defect Ratio',w:'25%'},{n:'Re-Inspection Rate',w:'5%'},{n:'Final Insp. Pass Rate',w:'45%'}],
+  pre:[{n:'Product Risk',w:'12.5%'},{n:'Order Size',w:'12.5%'},{n:'Defect Ratio',w:'25%'},{n:'Re-Inspection Rate',w:'5%'},{n:'Final Insp. Pass Rate',w:'45%'}]
+ }},
+{id:'production',name:'Production',cov:55,color:'#ffb83a',
+ wts:{arp:'10%',pre:'25%'},
+ attrs:{
+  arp:[{n:'QMS Certificates',w:'10%'},{n:'Factory Audit (Social)',w:'20%'},{n:'Factory Audit (Technical)',w:'10%'},{n:'Inline QC (Self-inspection)',w:'20%'},{n:'Product Experience',w:'40%'}],
+  pre:[{n:'QMS Certificates',w:'5%'},{n:'Factory Audit (Social)',w:'10%'},{n:'Factory Audit (Technical)',w:'5%'},{n:'Inline QC (Self-inspection)',w:'15%'},{n:'Product Experience',w:'20%'},{n:'Upstream Supplier Country',w:'5%',new:true},{n:'RM Testing Result',w:'5%',new:true},{n:'Order Cancellation Record',w:'5%',new:true},{n:'WIP Score',w:'30%',new:true}]
+ }}
+]};
+
+let curS=null,curHL=null,curProd='arp';
+function setProd(p){
+  curProd=p;
+  document.getElementById('btn_arp').className='prod-btn'+(p==='arp'?' active':'');
+  document.getElementById('btn_pre').className='prod-btn'+(p==='pre'?' active':'');
+  if(curS)buildStage(curS);
+}
+const tipEl=document.getElementById('tip');
+
+function countPartner(){
+  let n=0;
+  C.stages.forEach(s=>{
+    s.sources.forEach(x=>{if(x.partner)n++;});
+    s.dimensions.forEach(x=>{if(x.partner)n++;});
+  });
+  return n;
+}
+
+function initStats(){
+  const el=document.getElementById('statsBar');
+  let ts=0,tm=0,td=0,tc=0;
+  C.stages.forEach(s=>{ts+=s.sources.length;tm+=s.metrics.length;td+=s.dimensions.length;});
+  C.stages.forEach(s=>{s.sources.forEach(src=>{src.feeds.forEach(f=>{const m=s.metrics.find(x=>x.id===f);if(m)m.feeds.forEach(()=>tc++);});});});
+  const po=countPartner();
+  [{ic:'📦',n:C.stages.length,l:'Stages',cls:''},{ic:'📡',n:ts,l:'Sources',cls:''},{ic:'📊',n:tm,l:'Metrics',cls:''},{ic:'⚡',n:td,l:'Risk Dims',cls:''},{ic:'🎯',n:C.scorecard.length,l:'Scorecard',cls:''},{ic:'🔗',n:tc,l:'Connections',cls:''},{ic:'🤝',n:po,l:'Partner Zones',cls:'partner-stat'}].forEach(s=>{
+   el.innerHTML+='<div class="stat '+s.cls+'"><span class="ic">'+s.ic+'</span><span class="num">'+s.n+'</span><span class="lbl">'+s.l+'</span></div>';
+  });
+}
+
+function donut(pct,color){
+  const r=23,c=2*Math.PI*r,off=c*(1-pct/100);
+  return '<div class="donut-wrap"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="'+r+'" class="donut-bg"/><circle cx="28" cy="28" r="'+r+'" class="donut-fill" stroke="'+color+'" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'"/></svg><div class="donut-pct">'+pct+'%</div></div>';
+}
+function statusBar(s){
+  const a=s.sources.filter(x=>x.st==='active').length,p=s.sources.filter(x=>x.st==='partial').length,g=s.sources.filter(x=>x.st==='gap').length,t=a+p+g;
+  const stCol=s.coverage>=80?'#2edc96':s.coverage>=50?'#ffb83a':'#ff5068';
+  const barGrad=s.coverage>=80?'linear-gradient(90deg,#1ab878,#2edc96)':s.coverage>=50?'linear-gradient(90deg,#e89e20,#ffb83a)':'linear-gradient(90deg,#e0384e,#ff5068)';
+  return '<div class="status-bar"><div class="seg" style="width:100%;background:'+barGrad+'"></div></div>'+
+  '<div class="fnode-legend"><span><span class="ld" style="background:'+stCol+'"></span>'+a+' active · '+p+' partial · '+g+' gap</span></div>';
+}
+
+function init(){
+  initStats();
+  const el=document.getElementById('fb');
+  el.innerHTML=C.stages.map((s,i)=>{
+    const ph=s.phase==='pre'?'ph-pre':'ph-post',pt=s.phase==='pre'?'PRE-SHIPMENT':'POST-SHIPMENT';
+    const col=s.coverage>=80?'var(--gn)':s.coverage>=50?'var(--yl)':'var(--rd)';
+    const accentCol=s.coverage>=80?'linear-gradient(90deg,#1ab878,var(--gn))':s.coverage>=50?'linear-gradient(90deg,#e89e20,var(--yl))':'linear-gradient(90deg,#e0384e,var(--rd))';
+    return '<div class="fnode" onclick="sel('+i+')" id="fn'+i+'">'+
+     '<div class="accent" style="background:'+accentCol+'"></div>'+
+     '<div class="fnode-top"><div class="emoji">'+s.emoji+'</div><div class="info"><div class="nm">'+s.name+'</div><div class="ph '+ph+'">'+pt+'</div></div></div>'+
+     '<div class="fnode-mid">'+donut(s.coverage,col)+
+     '<div class="fnode-metrics">'+
+     '<div class="fm"><div class="fmn">'+s.sources.length+'</div><div class="fml">Sources</div></div>'+
+     '<div class="fm"><div class="fmn">'+s.metrics.length+'</div><div class="fml">Metrics</div></div>'+
+     '<div class="fm"><div class="fmn">'+s.dimensions.length+'</div><div class="fml">Risk Dims</div></div>'+
+     '</div></div>'+
+     '<div class="fnode-bottom">'+statusBar(s)+'</div>'+
+     '</div>';
+  }).join('');
+  sel(1);
+  renderPartnerPanel();
+}
+
+function sel(i){
+  curS=i;curHL=null;
+  const s=C.stages[i];
+  const bc=s.coverage>=80?'rgba(46,220,150,.45)':s.coverage>=50?'rgba(255,184,58,.45)':'rgba(255,80,104,.45)';
+  const bg=s.coverage>=80?'rgba(46,220,150,.06)':s.coverage>=50?'rgba(255,184,58,.06)':'rgba(255,80,104,.06)';
+  document.querySelectorAll('.fnode').forEach((n,j)=>{
+    n.classList.toggle('on',j===i);
+    if(j===i){ n.style.setProperty('--on-bc',bc); n.style.setProperty('--on-bg',bg); }
+    else { n.style.removeProperty('--on-bc'); n.style.removeProperty('--on-bg'); }
+  });
+  rg(s);
+}
+
+function rg(s){
+  const w=document.getElementById('gw');
+  let h='<div class="G" id="G">';
+
+  // Sources column
+  h+='<div class="col"><div class="col-title"><span class="ct-dot" style="background:var(--ac)"></span>DATA SOURCES</div><div class="col-items">';
+  s.sources.forEach(x=>{
+    const sc=x.st==='active'?'st-g':x.st==='partial'?'st-y':'st-r';
+    const sl=x.st==='active'?'Active':x.st==='partial'?'Partial':'Gap';
+    const bc=x.st==='active'?'src-g':x.st==='partial'?'src-y':'src-r';
+    const poCls=x.partner?' po':'';
+    const poBadge=x.partner?'<span class="po-badge">🤝 Partner</span>':'';
+    h+='<div class="n src '+bc+poCls+'" id="s_'+x.id+'" onclick="hS(\''+s.id+'\',\''+x.id+'\')" onmouseenter="showTip(event,\''+esc(x.name)+'\',\'Data Source — '+sl+(x.partner?' · Partner Opp':'')+'\',\''+esc(x.tip||'')+(x.partner?' | Partner: '+esc(x.pNote||''):'')+'\')\" onmouseleave=\"hideTip()\">'+poBadge+'<span class="st-pill '+sc+'">'+sl+'</span><span class="nm">'+x.name+'</span></div>';
+  });
+  h+='</div></div>';
+
+  // Metrics column
+  h+='<div class="col"><div class="col-title"><span class="ct-dot" style="background:var(--cy)"></span>EXTRACTED METRICS</div><div class="col-items">';
+  s.metrics.forEach(x=>{h+='<div class="n met" id="m_'+x.id+'">'+x.name+'</div>';});
+  h+='</div></div>';
+
+  // Dimensions column
+  h+='<div class="col"><div class="col-title"><span class="ct-dot" style="background:var(--pp)"></span>RISK DIMENSIONS</div><div class="col-items">';
+  s.dimensions.forEach(x=>{
+    const rc=x.st==='good'?'rdim-g':x.st==='partial'?'rdim-y':'rdim-r';
+    const poCls=x.partner?' po':'';
+    const poBadge=x.partner?' <span class="po-badge" style="margin-left:4px">🤝</span>':'';
+    h+='<div class="n rdim '+rc+poCls+'" id="d_'+x.id+'" onclick="hD(\''+s.id+'\',\''+x.id+'\')" onmouseenter="showTip(event,\''+esc(x.name)+'\',\'Risk Dimension'+(x.partner?' · Partner Opp':'')+'\',\''+esc(x.pNote||'')+'\')\" onmouseleave=\"hideTip()\">'+x.name+poBadge+'</div>';
+  });
+  h+='</div></div>';
+
+  // Scorecard column
+  h+='<div class="col"><div class="col-title"><span class="ct-dot" style="background:var(--gn)"></span>SCORECARD</div><div class="col-items">';
+  C.scorecard.forEach(x=>{
+    const pw=x.wts[curProd];
+    const attrs=x.attrs[curProd];
+    const al='';
+    h+='<div class="n sc-n" id="sc_'+x.id+'" style="border-left-color:'+x.color+'"><h4>'+x.name+'</h4><div class="wt">'+pw+' · '+x.cov+'%</div><div class="bar"><div class="fill" style="width:'+x.cov+'%;background:linear-gradient(90deg,'+x.color+'88,'+x.color+')"></div></div>'+al+'</div>';
+  });
+  h+='</div></div>';
+
+  h+='<svg class="L" id="SV"></svg></div>';
+  w.innerHTML=h;
+  document.getElementById('rm').classList.remove('show');
+
+  requestAnimationFrame(()=>{
+   equalizeHeights(s);
+   setTimeout(()=>dl(s),40);
+  });
+}
+
+function equalizeHeights(s){
+  const cols=document.querySelectorAll('.col-items');
+  if(!cols.length)return;
+  const colItems=Array.from(cols).map(c=>Array.from(c.children));
+  let maxH=0;
+  colItems.forEach(items=>{let h=0;items.forEach(it=>h+=it.offsetHeight+4);if(h>maxH)maxH=h;});
+  colItems.forEach(items=>{
+   let h=0;items.forEach(it=>h+=it.offsetHeight+4);
+   if(h<maxH&&items.length>0){const parent=items[0].parentElement;parent.style.justifyContent='space-between';parent.style.minHeight=maxH+'px';}
+  });
+}
+
+function esc(s){return(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+
+function showTip(e,name,type,desc){
+  let h='<div class="tl">'+type+'</div><h5>'+name+'</h5>';
+  if(desc)h+='<div class="td">'+desc+'</div>';
+  tipEl.innerHTML=h;tipEl.classList.add('show');positionTip(e);
+}
+function hideTip(){tipEl.classList.remove('show');}
+function positionTip(e){
+  const r=tipEl.getBoundingClientRect();
+  tipEl.style.left=Math.min(e.clientX+14,window.innerWidth-r.width-16)+'px';
+  tipEl.style.top=Math.min(e.clientY-8,window.innerHeight-r.height-10)+'px';
+}
+
+function pt(el){
+  const r=el.getBoundingClientRect(),p=document.getElementById('G').getBoundingClientRect();
+  return{l:r.left-p.left,r:r.right-p.left,y:r.top-p.top+r.height/2};
+}
+function dl(s){
+  const sv=document.getElementById('SV');if(!sv)return;
+  const g=document.getElementById('G');
+  sv.setAttribute('width',g.offsetWidth);sv.setAttribute('height',g.offsetHeight);
+  let p='';
+  const lc={active:'#5a9cff',partial:'#ffb83a',gap:'#3e5478'};
+  s.sources.forEach(src=>{
+    const sE=document.getElementById('s_'+src.id);if(!sE)return;const sp=pt(sE);
+    src.feeds.forEach(mId=>{
+      const mE=document.getElementById('m_'+mId);if(!mE)return;const mp=pt(mE);
+      const dx=mp.l-sp.r,ox=dx*0.42;
+      const strokeColor=src.partner?'rgba(255,140,66,.6)':(lc[src.st]||'#3e5478');
+      p+='<path class="draw" d="M'+sp.r+' '+sp.y+' C'+(sp.r+ox)+' '+sp.y+' '+(mp.l-ox)+' '+mp.y+' '+mp.l+' '+mp.y+'" stroke="'+strokeColor+'" data-s="'+src.id+'" data-m="'+mId+'"/>';
+    });
+  });
+  s.metrics.forEach(met=>{
+    const mE=document.getElementById('m_'+met.id);if(!mE)return;const mp=pt(mE);
+    met.feeds.forEach(dId=>{
+      const dE=document.getElementById('d_'+dId);if(!dE)return;const dp=pt(dE);
+      const dx=dp.l-mp.r,ox=dx*0.42;
+      p+='<path class="draw" d="M'+mp.r+' '+mp.y+' C'+(mp.r+ox)+' '+mp.y+' '+(dp.l-ox)+' '+dp.y+' '+dp.l+' '+dp.y+'" stroke="var(--cy)" data-m="'+met.id+'" data-d="'+dId+'"/>';
+    });
+  });
+  s.dimensions.forEach(dim=>{
+    const dE=document.getElementById('d_'+dim.id);if(!dE)return;const dp=pt(dE);
+    const scE=document.getElementById('sc_'+dim.sc);if(!scE)return;const sp=pt(scE);
+    const col=dim.st==='good'?'var(--gn)':dim.st==='partial'?'var(--yl)':'var(--rd)';
+    const dx=sp.l-dp.r,ox=dx*0.42;
+    p+='<path class="draw" d="M'+dp.r+' '+dp.y+' C'+(dp.r+ox)+' '+dp.y+' '+(sp.l-ox)+' '+sp.y+' '+sp.l+' '+sp.y+'" stroke="'+col+'" data-d="'+dim.id+'" data-c="'+dim.sc+'"/>';
+  });
+  sv.innerHTML=p;
+}
+
+function hS(sid,srcId){
+  const stg=C.stages.find(s=>s.id===sid),src=stg.sources.find(s=>s.id===srcId);
+  const mI=new Set(src.feeds),dI=new Set(),cI=new Set();
+  stg.metrics.forEach(m=>{if(mI.has(m.id))m.feeds.forEach(d=>dI.add(d));});
+  stg.dimensions.forEach(d=>{if(dI.has(d.id))cI.add(d.sc);});
+  aHL(stg,new Set([srcId]),mI,dI,cI);
+}
+function hD(sid,dimId){
+  const stg=C.stages.find(s=>s.id===sid),dim=stg.dimensions.find(d=>d.id===dimId);
+  const mI=new Set(),sI=new Set();
+  stg.metrics.forEach(m=>{if(m.feeds.includes(dimId))mI.add(m.id);});
+  stg.sources.forEach(s=>{if(s.feeds.some(f=>mI.has(f)))sI.add(s.id);});
+  aHL(stg,sI,mI,new Set([dimId]),new Set([dim.sc]));
+}
+function aHL(stg,sI,mI,dI,cI){
+  stg.sources.forEach(s=>{const e=document.getElementById('s_'+s.id);if(e){e.classList.toggle('hi',sI.has(s.id));e.classList.toggle('dim',!sI.has(s.id));}});
+  stg.metrics.forEach(m=>{const e=document.getElementById('m_'+m.id);if(e){e.classList.toggle('hi',mI.has(m.id));e.classList.toggle('dim',!mI.has(m.id));}});
+  stg.dimensions.forEach(d=>{const e=document.getElementById('d_'+d.id);if(e){e.classList.toggle('hi',dI.has(d.id));e.classList.toggle('dim',!dI.has(d.id));}});
+  C.scorecard.forEach(s=>{const e=document.getElementById('sc_'+s.id);if(e){e.classList.toggle('hi',cI.has(s.id));e.classList.toggle('dim',!cI.has(s.id));}});
+  document.querySelectorAll('svg.L path').forEach(p=>{
+    const a=p.dataset;let on=false;
+    if(a.s&&a.m)on=sI.has(a.s)&&mI.has(a.m);
+    else if(a.m&&a.d)on=mI.has(a.m)&&dI.has(a.d);
+    else if(a.d&&a.c)on=dI.has(a.d)&&cI.has(a.c);
+    p.classList.remove('draw');p.classList.toggle('hi',on);p.classList.toggle('dim',!on);
+  });
+  document.getElementById('rm').classList.add('show');curHL=true;
+}
+function rHL(){
+  document.querySelectorAll('.hi,.dim').forEach(e=>{e.classList.remove('hi','dim');});
+  document.querySelectorAll('svg.L path').forEach(p=>{p.classList.remove('hi','dim');});
+  document.getElementById('rm').classList.remove('show');curHL=null;
+}
+
+// ── PARTNER OPPORTUNITY PANEL ──
+function renderPartnerPanel(){
+  const panel=document.getElementById('partnerPanel');
+
+  // Collect partner zones grouped by logical area
+  const zones=[
+    {
+      id:'rm',
+      icon:'🧵',
+      title:'Raw Material Sourcing',
+      stage:'📦 Procurement',
+      desc:'RM certification data and on-ground supplier verification are currently partial. A traceability and certification partner can fill this gap — covering OEKO-TEX, BCI, GOTS and designated supplier audits.',
+      sources:['RM Certification (Partial)','Field Survey (Partial)'],
+      dims:['Raw Material Risk','RM Compliance & Cert'],
+      partnerType:'RM Traceability & Certification Partner',
+      color:'#ff8c42'
+    },
+    {
+      id:'lab',
+      icon:'🔬',
+      title:'Lab & Product Compliance Testing',
+      stage:'🏭 Production',
+      desc:'Lab testing data is limited to inspection-level checks. Dedicated third-party lab testing is required to validate chemical safety, restricted substance compliance and multi-market regulatory requirements.',
+      sources:['Lab Testing (Partial — new)'],
+      dims:['Product Compliance & Regulation'],
+      partnerType:'Certified Lab Testing Partner',
+      color:'#a07bff'
+    },
+    {
+      id:'logistics',
+      icon:'🚢',
+      title:'Logistics & Route Intelligence',
+      stage:'🚢 Delivery',
+      desc:'Carrier/vessel tracking data is a gap. Real-time logistics coverage is needed for route disruption monitoring (Red Sea, port congestion), ETA accuracy and logistics risk assessment.',
+      sources:['Carrier / Vessel API (Gap)'],
+      dims:['Logistics & Route Risk'],
+      partnerType:'Logistics Intelligence & Carrier Data Partner',
+      color:'#30d4f0'
+    }
+  ];
+
+  let h='<div class="partner-panel-hdr">';
+  h+='<div class="pp-icon">🤝</div>';
+  h+='<div><div class="pp-title">Partner Opportunity Zones</div>';
+  h+='<div class="pp-sub">Areas with limited data coverage or high operational complexity — proposed for external partner collaboration.<br>Items marked <span style="color:var(--or);font-weight:700">🤝 Partner</span> in the flow map above correspond to these zones.</div></div>';
+  h+='<div class="pp-legend" style="margin-left:auto;text-align:right"><span class="po-badge" style="font-size:8px;padding:3px 9px">🤝 Partner</span><br><span style="font-size:7.5px;color:var(--t3);margin-top:3px;display:block">tagged items in flow</span></div>';
+  h+='</div>';
+
+  h+='<div class="partner-zones">';
+  zones.forEach(z=>{
+    h+='<div class="pz">';
+    h+='<div class="pz-stage-badge">'+z.stage+'</div>';
+    h+='<div class="pz-title">'+z.icon+' '+z.title+'</div>';
+    h+='<div class="pz-desc">'+z.desc+'</div>';
+    h+='<div class="pz-items">';
+    z.sources.forEach(s=>h+='<span class="pz-source-tag">📡 '+s+'</span>');
+    z.dims.forEach(d=>h+='<span class="pz-dim-tag">⚡ '+d+'</span>');
+    h+='</div>';
+    h+='<div class="pz-footer">💡 Suggested: <span class="pz-partner-type">'+z.partnerType+'</span></div>';
+    h+='</div>';
+  });
+  h+='</div>';
+
+  panel.innerHTML=h;
+}
+
+document.addEventListener('click',e=>{if(curHL&&!e.target.closest('.n')&&!e.target.closest('.fnode')&&!e.target.closest('.sc-n'))rHL();});
+document.addEventListener('mousemove',e=>{if(tipEl.classList.contains('show'))positionTip(e);});
+window.addEventListener('resize',()=>{if(curS!==null){rHL();setTimeout(()=>{equalizeHeights(C.stages[curS]);dl(C.stages[curS]);},80);}});
+init();
+
+// ── SUPPLIER OVERLAY SYSTEM ──
+const SUPPLIER_DATA={
+ mybari:{
+  name:'M.Y. Bari',cls:'mybari',
+  nodes:{
+   'm_otd':{badge:'4.22d | norm 5d',lines:['OTD Avg Delay: <b>4.22 days</b>','Industry norm: ~5d avg delay','Shipments: 2,230 to 5 countries']},
+   'm_dif':{badge:'100% DIF',lines:['Delivery In Full: <b>100%</b>','Industry norm: ~95%']},
+   'm_pass_rate':{badge:'100% | wt 5.1',lines:['1st Pass Rate: <b>100%</b>','Industry norm wt.score: 5.1']},
+   'm_defect':{badge:'0.39% | wt 2.5',lines:['Defect Rate: <b>0.39%</b>','Industry norm wt.score: 2.5']},
+   'm_claim':{badge:'0 claims | wt 13.5',lines:['Claims: <b>None</b>','Industry norm wt.score: 13.5']},
+   'm_b_count':{badge:'40 buyers | wt 1.3',lines:['Buyer Count: <b>40</b>','Industry norm wt.score: 1.3']},
+   'm_terms':{badge:'120d | wt 1.3',lines:['Payment Term: <b>120 days</b>','Industry norm wt.score: 1.3']},
+   'm_capacity':{badge:'~2,500 workers',lines:['Workers: <b>~2,500</b>','3 factories, 12yr ops']},
+   'm_compliance':{badge:'SEDEX·ISO·OEKO·BCI',lines:['SEDEX, ISO 9001','OEKO-TEX (78%), BCI 100%']},
+   'sc_performance':{badge:'36.08/45 ↑ norm',lines:['Performance Score: <b>36.08/45</b>','Industry norm: 35.8 ✅ Above']},
+   'sc_qaqc':{badge:'14.07/15 ↑ norm',lines:['Quality Score: <b>14.07/15</b>','Industry norm: 11.0 ✅ Above']},
+   'sc_buyer_supplier':{badge:'28.04/40 ↑ norm',lines:['Buyer/Supplier: <b>28.04/40</b>','Industry norm: 26.7 ✅ Above']},
+  }
+ },
+ gulahmed:{
+  name:'Gul Ahmed',cls:'gulahmed',
+  nodes:{
+   's_td_d':{badge:'452 invoices',lines:['Invoices: <b>452</b>','Delivery stage data source']},
+   'm_otd':{badge:'Perf 43.5/45',lines:['OTD Performance (from 452 invoices)','Overall Performance: <b>43.5/45</b>','Re-inspection: <b>1.00%</b>']},
+   'm_dif':{badge:'DIF tracked',lines:['Delivery In Full tracked','Performance score: <b>43.5/45</b>']},
+   'm_pass_rate':{badge:'100% | wt 5.1',lines:['1st Pass Rate: <b>100%</b>','Industry norm wt.score: 5.1']},
+   'm_defect':{badge:'0.32% | wt 2.5',lines:['Defect Rate: <b>0.32%</b>','Industry norm wt.score: 2.5']},
+   'm_claim':{badge:'Claim tracked',lines:['Claim included in Performance score','Overall Performance: <b>43.5/45</b>']},
+   'm_b_count':{badge:'54 buyers | wt 1.3',lines:['Buyer Count: <b>54</b>','Industry norm wt.score: 1.3']},
+   'm_terms':{badge:'Terms tracked',lines:['Payment terms tracked','Buyer/Supplier: <b>37.32/40</b>']},
+   'm_capacity':{badge:'18,466 workers',lines:['Workers: <b>18,466</b>','72yr ops, 1,300+ suppliers']},
+   'm_compliance':{badge:'ISO·BCI·OEKO·REACH',lines:['ISO 9001, BCI, OEKO-TEX','REACH, ZDHC compliance']},
+   's_td_pay':{badge:'390 FR records',lines:['FR Records: <b>390</b>','Payment stage data source']},
+   's_cust_p':{badge:'3,097↑ / 23,353↓',lines:['1688 Upstream (as buyer): <b>3,097</b>','1688 Downstream (as supplier): <b>23,353</b>']},
+   's_cust_pay':{badge:'3,097↑ / 23,353↓',lines:['1688 Upstream (as buyer): <b>3,097</b>','1688 Downstream (as supplier): <b>23,353</b>']},
+   'sc_performance':{badge:'43.5/45 ↑↑ norm',lines:['Performance Score: <b>43.5/45</b>','Industry norm: 35.8 ✅ Well above']},
+   'sc_qaqc':{badge:'13.13/15 ↑ norm',lines:['Quality Score: <b>13.13/15</b>','Industry norm: 11.0 ✅ Above']},
+   'sc_buyer_supplier':{badge:'37.32/40 ↑ norm',lines:['Buyer/Supplier: <b>37.32/40</b>','Industry norm: 26.7 ✅ Well above']},
+  }
+ },
+ banatoys:{
+  name:'Banatoys',cls:'banatoys',
+  nodes:{
+   's_td_d':{badge:'51 invoices',lines:['Invoices: <b>51</b>','Delivery stage data source']},
+   'm_otd':{badge:'12.07d delay ⚠',lines:['Avg Delay: <b>12.07 days</b>','⚠ High risk — industry norm ~5d']},
+   'm_pass_rate':{badge:'97.92% | wt 5.1',lines:['1st Pass Rate: <b>97.92%</b>','Industry norm wt.score: 5.1']},
+   'm_defect':{badge:'0.75% | wt 2.5',lines:['Defect Rate: <b>0.75%</b>','Industry norm wt.score: 2.5']},
+   'm_claim':{badge:'0 claims | wt 13.5',lines:['Claims: <b>None</b>','Industry norm wt.score: 13.5']},
+   'm_b_count':{badge:'24 buyers | wt 1.3',lines:['Buyer Count: <b>24</b>','Industry norm wt.score: 1.3']},
+   'm_terms':{badge:'Terms tracked',lines:['Payment terms tracked','Buyer/Supplier: <b>26.65/40</b>']},
+   'm_capacity':{badge:'~500 workers',lines:['Workers: <b>~500</b>','8yr ops']},
+   'm_compliance':{badge:'ISO·EN71·REACH',lines:['ISO 9001, EN71, REACH','ASTM F963']},
+   's_td_pay':{badge:'47 FR records',lines:['FR Records: <b>47</b>','Payment stage data source']},
+   'sc_performance':{badge:'29.93/45 ↓ norm',lines:['Performance Score: <b>29.93/45</b>','⚠ Below industry norm: 35.8']},
+   'sc_qaqc':{badge:'4.55/15 ↓↓ norm',lines:['Quality Score: <b>4.55/15</b>','⚠ Below industry norm: 11.0']},
+   'sc_buyer_supplier':{badge:'26.65/40 ≈ norm',lines:['Buyer/Supplier: <b>26.65/40</b>','≈ Industry norm: 26.7']},
+  }
+ }
+};
+
+let curSup='default';
+
+function setSup(sup){
+ curSup=sup;
+ document.querySelectorAll('.sup-btn').forEach(b=>b.classList.toggle('active',b.dataset.sup===sup));
+ applyOverlay();
+}
+
+function applyOverlay(){
+ clearOverlay();
+ if(curSup==='default')return;
+ const sd=SUPPLIER_DATA[curSup];if(!sd)return;
+ const nodeIds=new Set(Object.keys(sd.nodes));
+ document.querySelectorAll('.n,.sc-n').forEach(node=>{
+  if(!node.id)return;
+  if(nodeIds.has(node.id)){
+   node.classList.add('ov-hi',sd.cls);
+   node.style.position='relative';
+   const d=sd.nodes[node.id];
+   const bdg=document.createElement('div');
+   bdg.className='ov-badge '+sd.cls;
+   bdg.textContent=d.badge;
+   node.appendChild(bdg);
+  } else {
+   node.classList.add('ov-dim');
+  }
+ });
+}
+
+function clearOverlay(){
+ document.querySelectorAll('.ov-badge').forEach(b=>b.remove());
+ document.querySelectorAll('.ov-hi,.ov-dim').forEach(n=>{
+  n.classList.remove('ov-hi','ov-dim','mybari','gulahmed','banatoys');
+ });
+ const p=document.getElementById('ovPopup');if(p)p.remove();
+}
+
+function showOvPopup(e,nodeId,cls){
+ const sd=SUPPLIER_DATA[curSup];if(!sd||!sd.nodes[nodeId])return;
+ const d=sd.nodes[nodeId];
+ let p=document.getElementById('ovPopup');if(p)p.remove();
+ p=document.createElement('div');
+ p.id='ovPopup';
+ p.className='ov-popup '+cls;
+ p.innerHTML='<div class="ov-popup-hdr">'+sd.name+'</div>'+
+  '<div class="ov-popup-node">'+nodeId.replace(/^[smd]_/,'').replace(/_/g,' ')+'</div>'+
+  d.lines.map(l=>'<div class="ov-popup-line">'+l+'</div>').join('');
+ const pw=p.getBoundingClientRect?240:240;
+ p.style.left=Math.min(e.clientX+14,window.innerWidth-pw-10)+'px';
+ p.style.top=Math.min(e.clientY-8,window.innerHeight-160)+'px';
+ document.body.appendChild(p);
+ setTimeout(()=>{document.addEventListener('click',function cp(){p&&p.parentNode&&p.remove();document.removeEventListener('click',cp);});},60);
+ e.stopPropagation();
+}
+
+// Intercept node clicks to show supplier popup when overlay is active
+document.getElementById('gw').addEventListener('click',function(e){
+ if(curSup==='default')return;
+ const sd=SUPPLIER_DATA[curSup];if(!sd)return;
+ const node=e.target.closest('.n,.sc-n');
+ if(!node||!node.id)return;
+ if(sd.nodes[node.id]){
+  showOvPopup(e,node.id,sd.cls);
+ }
+},true);
+
+// Wrap rg() to re-apply overlay after stage switch
+const _origRg=rg;
+rg=function(s){
+ _origRg(s);
+ if(curSup!=='default')setTimeout(applyOverlay,80);
+};
+</script>
+</body></html>
