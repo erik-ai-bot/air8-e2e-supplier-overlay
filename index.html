@@ -317,7 +317,7 @@ dimensions:[
 {id:'soc_compl',name:'Social Compliance',st:'gap',sc:'qaqc'},
 {id:'preship',name:'Pre-Shipment Readiness',st:'gap',sc:'production'}
 ]},
-{id:'delivery',name:'Delivery',phase:'post',coverage:85,emoji:'🚢',accent:'linear-gradient(90deg,#5a9cff,#30d4f0)',
+{id:'delivery',name:'Delivery',phase:'post',coverage:75,emoji:'🚢',accent:'linear-gradient(90deg,#5a9cff,#30d4f0)',
 sources:[
 {id:'td_d',name:'PO / Invoice / Shipment',st:'active',feeds:['otd','dif','lead_t','freq','ship_mode'],tip:'PO detail, invoice detail, shipment info — OTD, DIF%, lead time, shipping mode, quantities'},
 {id:'cust_d',name:'Customs Data (↑↓)',st:'active',feeds:['freq','dest','tariff','season'],tip:'Upstream & downstream customs — HS codes, destinations, tariff classification, seasonal patterns'},
@@ -737,13 +737,13 @@ const SUPPLIER_DATA={
  'm_freq':{badge:'2,230 ships · 5 dest',lines:['Shipping frequency:','2,230 total shipments','5 destination countries']},
  'm_dest':{badge:'5 countries · US 53%',lines:['Destination mix:','US 53.4% · DE 40% · NL 16%','Norway 3% · Poland 1%','Mode: ~99% Sea']},
  // PAYMENT SOURCES
- 's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim ratio: 0% (score 1.0 | wtd 13.5 | norm 9.5)','Txn Frequency: 4 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: -6.66% (score 0.67 | wtd 1.34 | norm 1.3)','Payment Term: 120 days (score 0 | wtd 0 | norm 1.3)']},
+ 's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim ratio: 0% (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 4 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: -6.66% (score 0.67 | wtd 1.34 | norm 1.3)','Payment Term: 120 days (score 0 | wtd 0 | norm 1.3)']},
  's_td_pay':{badge:'INV: 526 · 40 buyers · $18M',lines:['PO / Invoice (Payment):','No. of financed buyers: 40','No. of invoices: 526','Sales Turnover: $18,013,531','Payment Terms: 120 days']},
  's_cust_pay':{badge:'2,230 downstream txns',lines:['Customs Data — downstream (payment):','Downstream txns: 2,230','Buyer count: 40 | Buyer conc (Top3): 66%']},
  's_tp_pay':{badge:'Buyer credit: BBB+/BB-',lines:['3rd Party buyer credit:','Buyer portfolio: BBB+/BB- rated']},
  // PAYMENT METRICS
- 'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 13.5 | norm 9.5)','Payment Term: 120d (score 0 | wtd 0 | norm 1.3)']},
- 'm_claim':{badge:'0 | 13.5 | norm 9.5',lines:['Claim: 0 (no claims)','Score (wtd): 13.5 | Industry norm: 9.5','Raw score: 1.0 | Weight: 30%']},
+ 'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Payment Term: 120d (score 0 | wtd 0 | norm 1.3)']},
+ 'm_claim':{badge:'0 | 6.75 | norm 13.5',lines:['Claim: 0 (no claims)','Score (wtd): 6.75 | Industry norm: 13.5','Raw score: 1.0 | Weight: 15%']},
  'm_b_count':{badge:'40 | 2.00 | norm 1.3',lines:['No. of Buyers: 40','Score (wtd): 2.00 | Industry norm: 1.3','Raw score: 1.0 | Weight: 5%']},
  'm_b_conc':{badge:'0.66 | 2.68 | norm 2.7',lines:['Buyer Concentration (Top3): 0.66 = 66%','Score (wtd): 2.68 | Industry norm: 2.7','Raw score: 0.67 | Weight: 10%']},
  'm_terms':{badge:'120d | 0 | norm 1.3',lines:['Payment Term: 120 days','Score (wtd): 0 | Industry norm: 1.3','Raw score: — | Weight: 10%']},
@@ -790,13 +790,13 @@ const SUPPLIER_DATA={
  'm_dif':{badge:'100% | 4.5 | norm 4.5',lines:['Delivery in Full: 100%','Score (wtd): 4.5 | Industry norm: 4.5','Raw score: 1.0 | Weight: 10%']},
  'm_freq':{badge:'452 inv · 6,770 ships',lines:['Shipping frequency:','452 invoices | 6,770 shipments','Active past 2 years: Yes']},
  // PAYMENT SOURCES
- 's_bank':{badge:'0 claims · 5 txns/yr',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 13.5 | norm 9.5)','Txn Frequency: 5 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: 100% (score 1.0 | wtd 2.0 | norm 1.3)']},
+ 's_bank':{badge:'0 claims · 5 txns/yr',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 5 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: 100% (score 1.0 | wtd 2.0 | norm 1.3)']},
  's_td_pay':{badge:'INV: 452 · 111 buyers · $568M',lines:['PO / Invoice (Payment):','No. of invoices: 452','No. of financed buyers: 111','Sales Turnover: USD 568M']},
  's_cust_pay':{badge:'6,770 downstream txns',lines:['Customs Data — downstream (payment):','Downstream txns: 6,770','No. of buyers: 111 | Buyer conc (Top3): 51%']},
  's_tp_pay':{badge:'Buyer credit data',lines:['3rd Party buyer credit:','111 buyers in network']},
  // PAYMENT METRICS
- 'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 13.5 | norm 9.5)']},
- 'm_claim':{badge:'0 | 13.5 | norm 9.5',lines:['Claim: 0','Score (wtd): 13.5 | Industry norm: 9.5','Raw score: 1.0 | Weight: 30%']},
+ 'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)']},
+ 'm_claim':{badge:'0 | 6.75 | norm 13.5',lines:['Claim: 0','Score (wtd): 6.75 | Industry norm: 13.5','Raw score: 1.0 | Weight: 15%']},
  'm_b_count':{badge:'111 | 2.00 | norm 1.3',lines:['No. of Buyers: 111','Score (wtd): 2.00 | Industry norm: 1.3','Raw score: 1.0 | Weight: 5%']},
  'm_b_conc':{badge:'0.51 | 4.00 | norm 2.7',lines:['Buyer Concentration (Top3): 0.51 = 51%','Score (wtd): 4.00 | Industry norm: 2.7','Raw score: 1.0 | Weight: 10%']},
  'm_terms':{badge:'TBC payment terms',lines:['Payment terms: TBC']},
@@ -838,12 +838,12 @@ const SUPPLIER_DATA={
  'm_freq':{badge:'51 inv · 8 countries',lines:['Shipping frequency:','51 invoices | ~200 shipments','8 export destination countries']},
  'm_dest':{badge:'8 countries',lines:['Destination mix:','8 export destination countries','HK → global distribution']},
  // PAYMENT SOURCES
- 's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 13.5 | norm 9.5)','Txn Frequency: 12 (score 1.0 | wtd 0 | norm 1.3)','Txn Volatility: 68.14% (score 1.0 | wtd 2.0 | norm 1.3)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
+ 's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 12 (score 1.0 | wtd 0 | norm 1.3)','Txn Volatility: 68.14% (score 1.0 | wtd 2.0 | norm 1.3)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
  's_td_pay':{badge:'INV: 51 · 23 buyers · $15M',lines:['PO / Invoice (Payment):','No. of invoices: 51','No. of financed buyers: 23','Sales Turnover: USD 15,000,000']},
  's_cust_pay':{badge:'200 downstream txns',lines:['Customs Data — downstream (payment):','Downstream txns: 200','No. of buyers: 23 | Buyer conc (Top3): 55%','Buyer data also from Field Survey']},
  // PAYMENT METRICS
- 'm_pay_p':{badge:'0 claims · 120d',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 13.5 | norm 9.5)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
- 'm_claim':{badge:'0 | 13.5 | norm 9.5',lines:['Claim Rate: 0','Score (wtd): 13.5 | Industry norm: 9.5','Raw score: 1.0 | Weight: 30%']},
+ 'm_pay_p':{badge:'0 claims · 120d',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
+ 'm_claim':{badge:'0 | 6.75 | norm 13.5',lines:['Claim Rate: 0','Score (wtd): 6.75 | Industry norm: 13.5','Raw score: 1.0 | Weight: 15%']},
  'm_b_count':{badge:'23 | 2.00 | norm 1.3',lines:['No. of Buyers: 23 | Source: Field Survey','Score (wtd): 2.00 | Industry norm: 1.3','Raw score: 1.0 | Weight: 5%']},
  'm_b_conc':{badge:'0.55 | 4.00 | norm 2.7',lines:['Buyer Conc (Top3): 55% | Source: Field Survey','Score (wtd): 4.00 | Industry norm: 2.7','Raw score: 1.0 | Weight: 10%']},
  'm_terms':{badge:'120d | 0 | norm 1.3',lines:['Payment Term: 120 days','Score (wtd): 0 | Industry norm: 1.3','Raw score: — | Weight: 10%']},
