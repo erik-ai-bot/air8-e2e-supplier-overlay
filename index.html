@@ -710,7 +710,10 @@ const SUPPLIER_DATA={
  's_tp_p':{badge:'RM intel · ~35 sup',lines:['3rd Party/AI — procurement intel','Upstream supplier enrichment','Commodity pricing: textile yarn']},
  's_fs_p':{badge:'~35 RM sup · Top3=73%',lines:['Field Survey upstream:','~35 upstream RM suppliers mapped','Key: Masood Roomi · Sapphire · Archroma','Country conc: Pakistan ~73%']},
  's_rmcert':{badge:'BCI 100% · OEKO 90%',lines:['RM Certification:','BCI Cotton: 100%','OEKO-TEX: 90% · GOTS · ZDHC','ISO 9001 · ISO 14001 · WRAP · SEDEX']},
+ // PROCUREMENT SOURCES (add back cust_p and commodity)
+ 's_cust_p':{badge:'Upstream customs · partial',lines:['Customs Data procurement:','RM import customs — limited data (no 1688)','Top3 RM suppliers: Masood Fibres · Sapphire · Archroma','Country: Pakistan ~73% concentration']},
  // PROCUREMENT METRICS
+ 'm_commodity':{badge:'Textile yarn · commodity',lines:['Commodity price trends:','Textile yarn pricing data','Source: 3rd Party/AI + customs data','Cotton/yarn market rates tracked']},
  'm_sup_map':{badge:'~35 upstream · PK yarn',lines:['Upstream suppliers: ~35','Key: Masood Roomi, Sapphire, Archroma','Top3 concentration: 73% | norm: —']},
  'm_concentration':{badge:'Top3=73% · Pakistan',lines:['Sourcing concentration:','Top3 supplier share: 73%','Country: Pakistan (yarn primary) | norm: —']},
  'm_cert_cov':{badge:'78% cert coverage',lines:['RM Cert Coverage: 78%','BCI 100% · OEKO-TEX 90%','ZDHC 80% · GOTS 60%']},
@@ -725,7 +728,7 @@ const SUPPLIER_DATA={
  'm_workforce':{badge:'~2,500w · 3 factories',lines:['Workforce capacity:','~2,500 workers · 3 factories','Source: Field Survey | norm: —']},
  // DELIVERY SOURCES
  's_td_d':{badge:'2,230 ships · 5 dest',lines:['PO / Invoice / Shipment:','Total Shipments: 2,230','5 destination countries','US 53.4% · DE · NL · NO · PL']},
- 's_cust_d':{badge:'5 countries · HS 5560',lines:['Customs Data (delivery):','5 export countries | HS: 5560 (terry textiles)','US 53.4% · Germany 40% · Netherlands 16%','Mode: ~99% Sea freight']},
+ 's_cust_d':{badge:'Delivery customs · export',lines:['Customs Data (delivery):','Export shipment records · destination mix data','US 53.4% · Germany · Netherlands · Norway · Poland']},
  's_tp_d':{badge:'trade feed · routing',lines:['3rd Party/AI delivery:','Route risk monitoring','Tariff classification data']},
  // DELIVERY METRICS
  'm_otd':{badge:'4.22d | 15.08 | 17.8',lines:['Shipment Delay Days: 4.22 days','Score (wtd): 15.08 | Industry norm: 17.8','Raw score: 0.67 | Weight: 50%','OTD: 100% on-time']},
@@ -734,8 +737,8 @@ const SUPPLIER_DATA={
  'm_dest':{badge:'5 countries · US 53%',lines:['Destination mix:','US 53.4% · DE 40% · NL 16%','Norway 3% · Poland 1%','Mode: ~99% Sea']},
  // PAYMENT SOURCES
  's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim ratio: 0% (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 4 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: -6.66% (score 0.67 | wtd 1.34 | norm 1.3)','Payment Term: 120 days (score 0 | wtd 0 | norm 1.3)']},
- 's_td_pay':{badge:'FR: TBC · 40 buyers · $18M',lines:['PO / Invoice (Payment):','No. financed buyers: TBC (FR tab pending)','No. of invoices: TBC (FR tab pending)','Sales Turnover: $18,013,531','Payment Terms: 120 days']},
- 's_cust_pay':{badge:'40 buyers · Top3=66%',lines:['Customs payment data:','No. of buyers: 40','Buyer concentration (Top3): 0.66 = 66%','1688 downstream: — (no CN customs data)']},
+ 's_td_pay':{badge:'40 buyers · $18M · 120d',lines:['PO / Invoice (Payment):','No. of financed buyers: 40','Invoice count: see FR data','Sales Turnover: $18,013,531','Payment Terms: 120 days']},
+ 's_cust_pay':{badge:'40 buyers · Top3=66%',lines:['Customs payment data:','No. of buyers: 40 | Buyer conc (Top3): 66%','Downstream txns: — (no 1688 data for PK supplier)']},
  's_tp_pay':{badge:'Buyer credit: BBB+/BB-',lines:['3rd Party buyer credit:','Buyer portfolio: BBB+/BB- rated']},
  // PAYMENT METRICS
  'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Payment Term: 120d (score 0 | wtd 0 | norm 1.3)']},
@@ -756,7 +759,10 @@ const SUPPLIER_DATA={
  's_cust_p':{badge:'1688: 3,097 upstream txns',lines:['Customs Data (1688) — procurement:','1688 as Buyer: 3,097 transactions','China import customs | upstream RM visibility']},
  's_tp_p':{badge:'Sourcing intel · integrated',lines:['3rd Party/AI procurement:','Supplier mapping | RM concentration analysis']},
  's_fs_p':{badge:'72yr · integrated mfg',lines:['Field Survey upstream:','72 yr established manufacturer','Vertically integrated — in-house yarn production','→ <a href=https://gul-ahmed-intel.pages.dev/ target=_blank>gul-ahmed-intel.pages.dev</a>']},
+ // PROCUREMENT SOURCES (add back cust_p and commodity)
+ 's_cust_p':{badge:'Upstream customs · partial',lines:['Customs Data procurement:','RM import customs — limited data (no 1688)','Top3 RM suppliers: Masood Fibres · Sapphire · Archroma','Country: Pakistan ~73% concentration']},
  // PROCUREMENT METRICS
+ 'm_commodity':{badge:'Textile yarn · commodity',lines:['Commodity price trends:','Textile yarn pricing data','Source: 3rd Party/AI + customs data','Cotton/yarn market rates tracked']},
  'm_sup_map':{badge:'Integrated · low dep',lines:['Upstream supplier mapping:','72yr vertically integrated manufacturer','In-house spinning/weaving/finishing','Low external RM dependency']},
  'm_concentration':{badge:'Integrated · low conc',lines:['Sourcing concentration:','Vertically integrated → very low RM concentration risk','In-house yarn production']},
  // PRODUCTION SOURCES
@@ -770,7 +776,7 @@ const SUPPLIER_DATA={
  'm_workforce':{badge:'18,466 workers',lines:['Workforce: 18,466 workers','72 yr ops | large-scale integrated']},
  // DELIVERY SOURCES
  's_td_d':{badge:'452 inv · 6,770 ships',lines:['PO / Invoice / Shipment:','Invoices: 452 | FR records: 390','Shipments: 6,770 | OTD avg delay: 4 days']},
- 's_cust_d':{badge:'1688: 23,353 dn txns',lines:['Customs Data (1688) — delivery:','1688 as Supplier: 23,353 transactions','Export customs data']},
+ 's_cust_d':{badge:'23,353 downstream txns',lines:['Customs Data (1688) — delivery:','1688 as Supplier: 23,353 downstream txns','Export customs data | delivery stage']},
  's_tp_d':{badge:'Trade routing data',lines:['3rd Party/AI delivery:','Route intelligence · tariff data']},
  // DELIVERY METRICS
  'm_otd':{badge:'4d | 22.5 | 17.8',lines:['Shipment Delay Days: 4 days','Score (wtd): 22.5 | Industry norm: 17.8','Raw score: 1.0 | Weight: 50%','Excellent OTD performance']},
@@ -778,8 +784,8 @@ const SUPPLIER_DATA={
  'm_freq':{badge:'452 inv · 6,770 ships',lines:['Shipping frequency:','452 invoices | 6,770 shipments','Active past 2 years: Yes']},
  // PAYMENT SOURCES
  's_bank':{badge:'0 claims · 5 txns/yr',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 5 (score 0.33 | wtd 1.32 | norm 1.3)','Txn Volatility: 100% (score 1.0 | wtd 2.0 | norm 1.3)']},
- 's_td_pay':{badge:'452 inv · 390 FR · $568M',lines:['PO / Invoice (Payment):','No. financed buyers: (see buyer count)','No. of invoices: 452','FR records financed: 390','Sales Turnover: USD 568M']},
- 's_cust_pay':{badge:'1688: 23,353 dn · 111 buyers',lines:['Customs payment (1688):','1688 as Supplier: 23,353 transactions','No. of buyers: 111','Buyer concentration (Top3): 0.51 = 51%']},
+ 's_td_pay':{badge:'452 inv · 111 buyers · $568M',lines:['PO / Invoice (Payment):','No. of invoices: 452','No. of financed buyers: 111','Sales Turnover: USD 568M']},
+ 's_cust_pay':{badge:'23,353 downstream txns',lines:['Customs payment data (1688):','Downstream txns: 23,353','No. of buyers: 111 | Buyer conc (Top3): 51%']},
  's_tp_pay':{badge:'Buyer credit data',lines:['3rd Party buyer credit:','111 buyers in network']},
  // PAYMENT METRICS
  'm_pay_p':{badge:'0 claims · score 1.0',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)']},
@@ -814,7 +820,7 @@ const SUPPLIER_DATA={
  'm_dest':{badge:'8 countries',lines:['Destination mix:','8 export destination countries','HK → global distribution']},
  // PAYMENT SOURCES
  's_bank':{badge:'0 claims · 120d terms',lines:['Bank Statement:','Payment discipline: GOOD','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Txn Frequency: 12 (score 1.0 | wtd 0 | norm 1.3)','Txn Volatility: 68.14% (score 1.0 | wtd 2.0 | norm 1.3)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
- 's_td_pay':{badge:'51 inv · 47 FR · $15M',lines:['PO / Invoice (Payment):','No. financed buyers: (see buyer count)','No. of invoices: 51','FR records financed: 47','Sales Turnover: USD 15,000,000']},
+ 's_td_pay':{badge:'51 inv · 23 buyers · $15M',lines:['PO / Invoice (Payment):','No. of invoices: 51','No. of financed buyers: 23','Sales Turnover: USD 15,000,000']},
  's_cust_pay':{badge:'23 buyers · Top3=55%',lines:['Payment/buyer data:','No. of buyers: 23 (internal)','Buyer concentration (Top3): 0.55 = 55%']},
  // PAYMENT METRICS
  'm_pay_p':{badge:'0 claims · 120d',lines:['Payment punctuality:','Claim: 0 (score 1.0 | wtd 6.75 | norm 13.5)','Payment Term: 120 days (score — | wtd 0 | norm 1.3)']},
