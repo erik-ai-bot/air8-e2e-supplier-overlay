@@ -706,165 +706,126 @@ const SUPPLIER_DATA={
  mybari:{
   name:'M.Y. Bari',cls:'mybari',
   nodes:{
-   // DELIVERY SOURCES
-   's_td_d':{badge:'2,230 ships · 5 dest',lines:['Total Shipments: <b>2,230</b> tracked','5 destination countries','US 53.4% · DE · NL · NO · PL','DIF 100% · OTD avg 4.22d delay']},
-   's_cust_d':{badge:'5 countries · HS6302',lines:['Delivery Customs: <b>5 countries</b>','Main HS: 630260 · 63023130 · 630710','Karachi port — primarily SEA mode']},
-   's_tp_d':{badge:'route intel active',lines:['3rd Party route intelligence active','No Red Sea disruption flagged','⚠ Carrier gap — no real-time API']},
-   // PAYMENT SOURCES
-   's_td_pay':{badge:'40 buyers · $18M',lines:['Buyer Invoices: <b>40 buyers</b>','Total Trade Value: <b>USD 18M</b>','Top: Dolgencorp $9.8M · Lomotex $7.2M']},
-   's_bank':{badge:'0 defaults · 120d',lines:['Bank Statement: <b>0 payment defaults</b>','Avg payment term: 120 days O/A','Action (Air8 financed) — active facility']},
-   's_cust_pay':{badge:'buyer map · 40 buyers',lines:['Buyer mapping via customs data','40 buyers across 5 markets','Top buyer: Dolgencorp (867 ships, $9.8M)']},
-   's_tp_pay':{badge:'buyer credit signals',lines:['Buyer credit (3rd party): Dolgencorp <b>A</b>','Action BB-/Stable · Ross BBB+/Stable','Woolworth Int.B · Coop Norge Int.B']},
-   // PROCUREMENT SOURCES
-   's_cust_p':{badge:'~35 upstream · PK yarn',lines:['Upstream RM: <b>~35 suppliers</b>','Masood Roomi · Sapphire Fibres · Archroma Pak','Top 3 yarn = 73% of upstream volume']},
-   's_tp_p':{badge:'RM intel · ↓ easing',lines:['3rd Party / AI RM intelligence','↓ Easing yarn cost trend','~90% PK domestic yarn sourcing']},
-   // PRODUCTION SOURCES
-   's_fs_pr':{badge:'3 factories · ~2,500w',lines:['Field Survey: <b>3 factories</b> (S.I.T.E. Karachi)','Workers: <b>~2,500</b> · 178 looms','200K+ pcs/mo · 12yr operations','<a href="https://mybari-intel.pages.dev/" target="_blank" style="color:#f97316">View Full Supplier Profile ↗</a>']},
-   's_qc_cert':{badge:'SEDEX·ISO·OEKO-TEX',lines:['QA Certifications: SEDEX registered','ISO 9001 · OEKO-TEX (90% coverage)','BCI 100% yarn · ZDHC 80% dyes']},
-   's_qc_audit':{badge:'WRAP/ISO Audit Pass',lines:['Audit Result: <b>PASS</b> (WRAP/ISO)','Building Safety ✅ · Fire Safety ✅','Environmental ✅ · QMS in-house ✅']},
-   // DELIVERY METRICS
-   'm_otd':{badge:'4.22d avg | norm ~5d',lines:['OTD Avg Delay: <b>4.22 days</b>','Score 0.67 → Wtd <b>15.08 / 22.5</b>','2,230 shipments across 5 countries','Industry norm: ~5d delay ✅ Better than norm']},
-   'm_dif':{badge:'100% DIF ✅',lines:['Delivery In Full: <b>100%</b>','No short/over delivery recorded','Industry norm: ~95% ✅ Above']},
-   'm_freq':{badge:'2,230 ships · 5 dest',lines:['Shipping Frequency: <b>2,230 total shipments</b>','5 destination countries','Karachi port · primarily SEA mode']},
-   'm_dest':{badge:'5 countries · US 53%',lines:['Destination Mix: <b>5 countries</b>','US 53.4% · Germany · Netherlands · Norway · Poland','SEA mode majority']},
-   'm_lead_t':{badge:'45-60d FOB',lines:['Lead Time: <b>45-60 days FOB</b>','Consistent across terry/towel products','Karachi port efficient — avg 4.22d delay']},
-   // PAYMENT METRICS
-   'm_pay_p':{badge:'0 defaults · 120d O/A',lines:['Payment Discipline: <b>0 defaults</b>','Avg payment terms: O/A 120 days','All core buyers paying within terms ✅']},
-   'm_claim':{badge:'0 claims | Wtd 6.75',lines:['Claims: <b>None recorded</b>','Score 1 → Wtd <b>6.75</b>','Claim ratio: 0% · Industry norm Wtd: 6.75 ✅']},
-   'm_b_count':{badge:'40 buyers | Wtd 2.00',lines:['Buyer Count: <b>40</b> across 5 markets','Score 1 → Wtd <b>2.00</b>','Well diversified buyer base']},
-   'm_b_conc':{badge:'Top3=66% · HHI 0.66',lines:['Buyer Conc (Top 3): <b>66% / HHI 0.66</b>','Score 0.67 → Wtd <b>2.68</b>','Dolgencorp 39% · Lomotex 26% · Action 19%','⚠ Above 65% threshold — diversification needed']},
-   'm_terms':{badge:'120d O/A | score 0',lines:['Payment Term: <b>120 days O/A</b>','Score: — (benchmark exception) → Wtd 0','Action (Air8 financed ✅) active facility']},
-   'm_b_credit':{badge:'A/BB-/BBB+ mix',lines:['Buyer Credit Mix: A / BB- / BBB+','Dolgencorp (A) · Ross (BBB+/Stable)','Action (BB-/Stable · Air8 financed ✅)','Woolworth (Int.B) · Coop Norge (Int.B)']},
-   'm_dilution':{badge:'0 claims · 0%',lines:['Dilution Risk: <b>0 claims recorded</b>','Invoice adjustments: 0%','Claim root cause: none ✅']},
-   'm_hs_buyer':{badge:'HS 6302 · 5 mkts',lines:['HS Code Buyer Mapping: <b>HS 6302 family</b>','HS 630260 · 63023130 · 630710','5 export markets · USD 18M total']},
-   'm_buyer_hs_rev':{badge:'HS 6302 · $18M',lines:['Buyer Revenue by HS: <b>HS 6302</b>','Terry towels · bath towels · kitchen towels','$18M total across 40 buyers · 5 markets']},
-   // PROCUREMENT METRICS
-   'm_sup_map':{badge:'~35 upstream · stable',lines:['Upstream RM Suppliers: <b>~35</b>','Masood Roomi · Sapphire Fibres · Archroma Pak','Supplier tenure tracked · stable relationships']},
-   'm_cert_cov':{badge:'78% · BCI 100%',lines:['RM Certification Coverage: <b>78%</b>','BCI 100% · OEKO-TEX 90% · ZDHC 80%','REACH 90% · ISO 9001 100%']},
-   'm_concentration':{badge:'Top3=73% · PK yarn',lines:['Sourcing Concentration: <b>Top 3 = 73%</b>','Masood Roomi + Sapphire + Archroma Pak','~90% PK domestic yarn · ⚠ high concentration']},
-   'm_commodity':{badge:'↓ easing · PKR volatile',lines:['Commodity Trends: yarn prices ↓ easing','Gas tariff +40% YoY — cost pressure','PKR/USD 30%+ depreciation since 2022']},
-   // PRODUCTION METRICS
-   'm_capacity':{badge:'~2,500w · 3 factories',lines:['Workers: <b>~2,500</b> (S.I.T.E. Karachi)','3 factories · 178 looms · 200K+ pcs/mo','Lead time 45-60d FOB · 2M+ pcs/yr annual output','<a href="https://mybari-intel.pages.dev/" target="_blank" style="color:#f97316">View Supplier Profile ↗</a>']},
-   'm_compliance':{badge:'SEDEX·ISO·OEKO·BCI',lines:['SEDEX registered · ISO 9001','OEKO-TEX (78%) · BCI 100% yarn','Building/Fire/Environmental: Passed ✅']},
-   'm_workforce':{badge:'~2,500w · 178 looms',lines:['Workers: <b>~2,500</b>','178 looms · MOQ 500-999 units','Lead time: 45-60 days FOB']},
-   'm_lab_test':{badge:'100% pass · 0.39% defect',lines:['1st Pass Rate: <b>100%</b>','Defect Rate: <b>0.39%</b>','Re-inspection: 0% · Claim: 0%']},
-   'm_pass_rate':{badge:'100% | Wtd 6.75',lines:['1st Pass Rate: <b>100%</b>','Score 1 → Wtd <b>6.75</b>','Industry norm Wtd: ~5.1 ✅ Above']},
-   'm_defect':{badge:'0.39% | Wtd 3.75',lines:['Defect Rate: <b>0.39%</b>','Score 1 → Wtd <b>3.75</b>','Industry norm Wtd: ~2.5 ✅ Above']},
-   // SCORECARD — full attribute breakdowns
-
-
-
-  }
+  // ── PROCUREMENT SOURCES ──
+  // BOM/PO: NO data → NOT included (will be dimmed automatically)
+  // Customs Data (procurement): M.Y. Bari has NO 1688 data → not included
+  's_tp_p':{badge:'RM bind · 1 analog',lines:['3rd Party / AI intel — RM market data','Commodity pricing: textile yarn trends','Upstream supplier enrichment via 3P DB']},
+  's_fs_p':{badge:'~35 RM suppliers',lines:['Field Survey: upstream RM sourcing audit','~35 upstream RM suppliers mapped','Key: Masood Roomi · Sapphire · Archroma','Country concentration: Pakistan ~73%']},
+  's_rmcert':{badge:'BCI 100% · OEKO 90%',lines:['RM Certification data:','BCI Cotton: <b>100%</b>','OEKO-TEX Standard 100: <b>90%</b>','GOTS · ZDHC · ISO 9001 · ISO 14001','WRAP · SEDEX · BCI all active']},
+  // ── PROCUREMENT METRICS ──
+  'm_sup_map':{badge:'~35 upstream · PK yarn',lines:['<b>Upstream suppliers mapped: ~35</b>','Key: Masood Roomi, Sapphire, Archroma','Top3 concentration: <b>73%</b>','Peer avg: ~60% | Risk: medium-high']},
+  'm_concentration':{badge:'Top3=73% · PK yarn',lines:['Sourcing concentration (country/supplier):','Top3 supplier share: <b>73%</b>','Country: Pakistan (yarn primary)','Peer avg: ~60% | Norm wtd score: N/A']},
+  'm_cert_cov':{badge:'78% · BCI 100%',lines:['RM Cert Coverage: <b>78%</b>','BCI: 100% · OEKO-TEX: 90%','ZDHC: 80% · GOTS: 60%','UFLPA compliance gap flagged']},
+  // ── PRODUCTION SOURCES ──
+  // TA Report: NO structured data for M.Y. Bari → NOT included (dimmed)
+  // Lab Testing: NO lab test data → NOT included (dimmed)
+  's_insp':{badge:'Inspection active',lines:['Inspection Report: <b>ACTIVE</b>','Source for pass rate, defect, complexity metrics']},
+  's_fs_pr':{badge:'3 factories · ~2,500w',lines:['Field Survey / FS:','Workers: <b>~2,500</b> across 3 factories','Years of operation: <b>12 yrs</b>','Source: Field Survey → <a href="https://mybari-intel.pages.dev/" target="_blank">mybari-intel.pages.dev</a>']},
+  // ── PRODUCTION METRICS ──
+  'm_capacity':{badge:'~2,500w · 3 factories',lines:['<b>Capacity: ~2,500 workers</b>','3 factories · S.I.T.E., Karachi Pakistan','178 looms · ~120 active','Source: Field Survey']},
+  'm_pass_rate':{badge:'100% | Wtd 6.75 | norm 5.1',lines:['<b>1st Pass Rate: 100.00%</b>','Weighted score: <b>6.75</b>','Industry avg weighted: <b>5.1</b>','Score: 1.0/1.0 (max 6.75)']},
+  'm_defect':{badge:'0.39% | Wtd 3.75 | norm 2.5',lines:['<b>Defect Rate: 0.39%</b>','Weighted score: <b>3.75</b>','Industry avg weighted: <b>2.5</b>','Score: 1.0/1.0 (max 3.75)']},
+  'm_compliance':{badge:'SEDEX·ISO·OEKO·BCI',lines:['Factory compliance & certifications:','<b>SEDEX · ISO 9001 · ISO 14001</b>','<b>OEKO-TEX · BCI · GOTS · ZDHC · WRAP</b>','78% overall cert coverage']},
+  'm_workforce':{badge:'~2,500w · ~75 looms',lines:['Workforce capacity detail:','<b>~2,500 workers</b>','~75 looms operational (178 total)','Source: Field Survey']},
+  // ── DELIVERY SOURCES ──
+  's_td_d':{badge:'2,230 ships · 1 dest',lines:['PO / Invoice / Shipment data:','<b>Total Shipments: 2,230</b>','<b>5 destination countries</b>','US 53.4% · DE · NL · NO · PL','OTD: 100% · DIF: 100%']},
+  's_cust_d':{badge:'5 countries · US 53%',lines:['Customs delivery data:','<b>5 export destination countries</b>','US 53.4% · Germany 40% · Netherlands 16%','Norway 3% · Poland 1%','Shipment mode: ~99% Sea']},
+  's_tp_d':{badge:'trade feed routing',lines:['3rd Party / AI delivery intel:','Route risk monitoring (Red Sea etc.)','Tariff classification data','Trade lane intelligence']},
+  // ── DELIVERY METRICS ──
+  'm_otd':{badge:'4.22d avg | norm ~5d',lines:['<b>OTD Rate: 100% on-time</b>','Avg shipment delay: <b>4.22 days</b>','Weighted score: <b>15.08</b>','Industry avg weighted: <b>17.8</b>','Benchmark: <5d avg delay target']},
+  'm_dif':{badge:'100% DIF ✓',lines:['<b>Delivery in Full: 100%</b>','DIF weighted score: <b>4.5</b> (max 4.5)','Industry avg weighted: <b>4.5</b>','No short/over deliveries recorded']},
+  'm_freq':{badge:'2,230 ships · 5 dest',lines:['Shipping frequency & volume:','<b>2,230 total shipments</b>','<b>5 destination countries</b>','Peak season: Q3/Q4 (US retail cycle)']},
+  'm_dest':{badge:'5 countries · US 53%',lines:['Destination mix & transit mode:','US <b>53.4%</b> · Germany 40%','Netherlands 16% · Norway 3% · Poland 1%','Mode: ~99% Sea freight']},
+  // Lead time: NO specific data → NOT included (dimmed)
+  // ── PAYMENT SOURCES ──
+  's_bank':{badge:'Payment disciplined',lines:['Bank Statement:','Payment discipline: <b>GOOD</b>','<b>0 claims recorded</b>','No adverse payment history','Claim ratio: 0% (vs industry norm)']},
+  's_td_pay':{badge:'FR: TBC inv · 120d terms',lines:['PO / Invoice (FR data):','Financed buyers: <b>TBC</b>','No. of invoices financed: <b>TBC (FR tab)</b>','Financing value: <b>TBC</b>','Payment terms: <b>120 days avg</b>']},
+  's_cust_pay':{badge:'40 buyers · Top3=66%',lines:['Customs payment data:','<b>No. of buyers: 40</b>','Buyer concentration (Top3): <b>66%</b>','HHI: moderate','1688 downstream txns: — (no CN customs data)']},
+  's_tp_pay':{badge:'Buyer credit data',lines:['3rd Party buyer credit signals:','Buyer credit quality: <b>partial</b>','BBB+/BB- rated buyer portfolio']},
+  // ── PAYMENT METRICS ──
+  'm_pay_p':{badge:'0 claims · 120d',lines:['Payment punctuality & discipline:','Claim ratio: <b>0%</b>','Payment terms: <b>120 days</b>','Weighted score: <b>6.75</b>','Industry avg: <b>13.5</b> (performance dim)']},
+  'm_claim':{badge:'0 claims | Wtd 6.75 | norm 13.5',lines:['<b>Claim ratio: 0 claims</b>','Weighted score: <b>6.75</b>','Industry avg weighted: <b>13.5</b>','Score: 1.0/1.0 (max 6.75)']},
+  'm_b_count':{badge:'40 buyers | Wtd 2.00 | norm 1.3',lines:['<b>No. of buyers: 40</b>','Weighted score: <b>2.00</b>','Industry avg weighted: <b>1.3</b>','Score: 1.0/1.0 (max 2.0)']},
+  'm_b_conc':{badge:'Top3=66% | Wtd 2.68 | norm 2.7',lines:['<b>Buyer concentration (Top3): 0.66 = 66%</b>','Weighted score: <b>2.68</b>','Industry avg weighted: <b>2.7</b>','Score: 0.67/1.0']},
+  'm_terms':{badge:'120d | Wtd 0 | norm 1.3',lines:['<b>Payment terms: 120 days</b>','Weighted score: <b>0</b> (>90d = 0 score)','Industry avg weighted: <b>1.3</b>','Note: long payment terms reduce score']},
+  'm_dilution':{badge:'0 dilution',lines:['Dilution risk & invoice adjustments:','<b>0 dilution events recorded</b>','No invoice adjustments or deductions']},
+  'm_hs_buyer':{badge:'40 buyers mapped',lines:['HS code & buyer transaction mapping:','<b>40 buyers</b> in payment stage','Buyer HS code data: partial']},
+  'm_b_credit':{badge:'BBB+/BB-',lines:['Buyer credit quality signals:','Buyer portfolio rating: <b>BBB+/BB-</b>','Source: 3rd party credit data (partial)']},
+}
  },
 
  gulahmed:{
   name:'Gul Ahmed',cls:'gulahmed',
   nodes:{
-   // DELIVERY SOURCES
-   's_td_d':{badge:'6,770 ships · 5 dest',lines:['Total Shipments: <b>6,770</b> tracked','5 destination countries','CH 60.1% · US 31.1% · PL 3.4% · FR 3.2% · NL 2.2%','DIF 100% · OTD avg 4d delay']},
-   's_cust_d':{badge:'5 countries · HS6302',lines:['Delivery Customs: <b>5 countries</b>','Main HS: 630260 · 63023130 · 630710','Switzerland 60.1% · US 31.1% of shipments']},
-   's_tp_d':{badge:'route intel active',lines:['Route intelligence: active','No Red Sea disruption flagged','⚠ Carrier API gap — no real-time tracking']},
-   // PAYMENT SOURCES
-   's_td_pay':{badge:'111 buyers · $568M',lines:['Buyer Invoices: <b>111 buyers</b>','Total Trade Value: <b>USD 568M</b>','Anchor: Dolgencorp · IKEA · Walmart']},
-   's_bank':{badge:'0 defaults · 30d avg',lines:['Bank Statement: <b>0 payment defaults</b>','Avg payment term: 30 days (favorable)','Action (Air8 financed) — active facility']},
-   's_cust_pay':{badge:'3,097↑ / 23,353↓',lines:['1688 Upstream (as buyer): <b>3,097</b> txns','1688 Downstream (as supplier): <b>23,353</b> txns','40+ export markets · 111 buyers tracked']},
-   's_tp_pay':{badge:'A-rated anchors',lines:['Buyer credit (3rd party): Dollencorp <b>A</b>','IKEA / Walmart anchor buyers · Ross BBB+','Action BB-/Stable (Air8 financed ✅)']},
-   // PROCUREMENT SOURCES
-   's_cust_p':{badge:'3,097↑ / 23,353↓',lines:['1688 Upstream (as buyer): <b>3,097</b> txns','1688 Downstream (as supplier): <b>23,353</b> txns','~450 direct RM · 1,300+ total supply network']},
-   's_tp_p':{badge:'~450 RM · BCI network',lines:['3rd Party: ~450 direct RM suppliers','Pak domestic cotton 78% · BCI certified','↓ Easing yarn cost trend noted']},
-   // PRODUCTION SOURCES
-   's_fs_pr':{badge:'18,466w · 1,300+ sup',lines:['Workers: <b>18,466</b> (Landhi complex)','1,300+ upstream suppliers verified','~45 sewing lines · 1.25M pcs/mo','<a href="https://gul-ahmed-intel.pages.dev/" target="_blank" style="color:#22d3ee">View Full Supplier Profile ↗</a>']},
-   's_qc_cert':{badge:'ISO·BCI·OEKO·REACH',lines:['ISO 9001 · BCI (yarn) · OEKO-TEX 90%','ZDHC 80% · REACH 90% · SEDEX registered','72yr public listed — PSX:GATM governance']},
-   's_qc_audit':{badge:'WRAP/ISO Audit Pass',lines:['Audit Result: <b>PASS</b>','Building/Fire/Environmental: Passed ✅','QMS: In-house · PSX listed governance']},
-   // DELIVERY METRICS
-   'm_otd':{badge:'4d avg | Wtd 22.5',lines:['OTD Avg Delay: <b>4 days</b>','Score 1 → Wtd <b>22.5 / 22.5</b>','6,770 shipments · 5 countries · 100% OTD score','Industry norm: ~5d delay ✅ Better than norm']},
-   'm_dif':{badge:'100% DIF ✅',lines:['Delivery In Full: <b>100%</b>','No short/over delivery recorded','Industry norm: ~95% ✅ Well above']},
-   'm_freq':{badge:'6,770 ships · 40+ mkts',lines:['Shipping Frequency: <b>6,770 total</b>','40+ export markets globally','Sea mode 85% · Karachi port']},
-   'm_dest':{badge:'CH 60% · US 31% · 5 dest',lines:['Destination Mix: <b>5 countries</b>','Switzerland 60.1% · US 31.1%','Poland 3.4% · France 3.2% · Netherlands 2.2%']},
-   'm_lead_t':{badge:'45-60d FOB · 72yr ops',lines:['Lead Time: <b>45-60 days FOB</b>','72yr operational history','Consistent delivery · 1.25M pcs/mo capacity']},
-   // PAYMENT METRICS
-   'm_pay_p':{badge:'0.01% claim · 30d',lines:['Payment Discipline: 0.01% claim rate','Avg terms: 30 days (favorable)','0 defaults recorded ✅']},
-   'm_claim':{badge:'0.01% claim | Wtd 6.75',lines:['Claim Rate: <b>0.01%</b>','Score 1 → Wtd <b>6.75</b>','Effectively zero claims ✅']},
-   'm_b_count':{badge:'111 buyers | Wtd 2.00',lines:['Buyer Count: <b>111</b> buyers','Score 1 → Wtd <b>2.00</b>','40+ export markets globally']},
-   'm_b_conc':{badge:'Top3=51% · HHI 0.51',lines:['Buyer Conc (Top 3): <b>51% / HHI 0.51</b>','Score 1 → Wtd <b>4.00</b> ✅','IKEA · Walmart · Dolgencorp anchor buyers','Within 65% threshold ✅']},
-   'm_terms':{badge:'30d O/A · Low Risk',lines:['Payment Term: <b>30 days</b> (favorable)','Score: — → Wtd 0 (benchmark exception)','Well below industry 120d concern']},
-   'm_b_credit':{badge:'A-rated anchors',lines:['Buyer Credit: IKEA (A) · Walmart (A)','Dolgencorp A · Action BB-/Stable (Air8 ✅)','Ross BBB+/Stable · 111 buyers diversified']},
-   'm_dilution':{badge:'0.01% claim · nil',lines:['Dilution Risk: <b>0.01% claim rate</b>','Invoice adjustments: minimal (0.01%)','Effectively zero dilution risk ✅']},
-   'm_hs_buyer':{badge:'HS 6302 · 40+ mkts',lines:['HS Code Buyer Mapping: <b>HS 6302 family</b>','HS 630260 · 63023130 · 630710','$568M total across 111 buyers · 40+ markets']},
-   'm_buyer_hs_rev':{badge:'HS 6302 · $568M',lines:['Buyer Revenue by HS: <b>HS 6302</b>','Cotton bed linen · towels · terry products','$568M total · 111 buyers · 40+ markets']},
-   // PROCUREMENT METRICS
-   'm_sup_map':{badge:'1,300+ suppliers',lines:['Upstream RM: <b>1,300+ suppliers</b> total','~450 direct RM · BCI certified network','Archroma · CHT · Coats Pakistan anchor suppliers']},
-   'm_cert_cov':{badge:'78% · BCI 100%',lines:['RM Certification Coverage: <b>78%</b>','BCI 100% · OEKO-TEX 90% · ZDHC 80%','REACH 90% · ISO 9001 100%']},
-   'm_concentration':{badge:'PK cotton 81% · high',lines:['Sourcing Concentration: <b>PK cotton 81%</b>','Indorama Pakistan: 15% polyester fiber','⚠ High domestic concentration · UFLPA risk']},
-   'm_commodity':{badge:'↓ easing · UFLPA risk',lines:['Commodity: yarn prices ↓ easing','Gas tariff +40% YoY — PKR 1.5B cost impact','UFLPA cotton traceability compliance needed']},
-   // PRODUCTION METRICS
-   'm_capacity':{badge:'18,466w · 1,300+ sup',lines:['Workers: <b>18,466</b> (Landhi main complex)','1,300+ supplier network · ~45 sewing lines','1.25M pcs/mo · 72yr operations · PSX:GATM','<a href="https://gul-ahmed-intel.pages.dev/" target="_blank" style="color:#22d3ee">View Supplier Profile ↗</a>']},
-   'm_compliance':{badge:'ISO·BCI·OEKO·REACH',lines:['ISO 9001 · BCI · OEKO-TEX · REACH · ZDHC','SEDEX · Building/Fire/Environmental: Passed','Public listed (PSX:GATM) governance ✅']},
-   'm_workforce':{badge:'18,466w · ~45 lines',lines:['Workers: <b>18,466</b> total (Landhi complex)','~45 sewing lines · 1,300+ supply network','Lead time: 45-60 days FOB']},
-   'm_lab_test':{badge:'100% pass · 0.27% defect',lines:['1st Pass Rate: <b>100%</b>','Defect Rate: <b>0.27%</b>','Re-inspection: 1.00% · Claim: 0.01%']},
-   'm_pass_rate':{badge:'100% | Wtd 6.75',lines:['1st Pass Rate: <b>100%</b>','Score 1 → Wtd <b>6.75</b>','Industry norm Wtd: ~5.1 ✅ Above']},
-   'm_defect':{badge:'0.27% | Wtd 3.75',lines:['Defect Rate: <b>0.27%</b> (best in class)','Score 1 → Wtd <b>3.75</b>','Industry norm Wtd: ~2.5 ✅ Above']},
-   // SCORECARD — full attribute breakdowns
-
-
-
-  }
+  // ── PROCUREMENT SOURCES ──
+  's_cust_p':{badge:'3,097 upstream txns',lines:['Customs Data (1688) — upstream:','<b>1688 as Buyer: 3,097 transactions</b>','China import customs data','Upstream RM sourcing visibility']},
+  's_tp_p':{badge:'Sourcing intel',lines:['3rd Party / AI procurement intel:','Supplier mapping via trade databases','RM concentration analysis']},
+  's_fs_p':{badge:'72yr ops · PK textiles',lines:['Field Survey / upstream:','<b>72 years of operation</b>','Large-scale integrated textile manufacturer','Pakistan — full supply chain visibility']},
+  // ── PROCUREMENT METRICS ──
+  'm_sup_map':{badge:'Mapped · 72yr ops',lines:['Upstream supplier mapping:','<b>72 yr established manufacturer</b>','Integrated textile supply chain','In-house spinning/weaving/finishing']},
+  'm_concentration':{badge:'Integrated · low conc',lines:['Sourcing concentration:','Vertically integrated → low external RM dependency','In-house yarn production reduces concentration risk']},
+  // ── PRODUCTION SOURCES ──
+  's_insp':{badge:'Inspection active',lines:['Inspection Report: ACTIVE','Source for quality metrics']},
+  's_fs_pr':{badge:'18,466 workers · 72yr',lines:['Field Survey / FS:','Workers: <b>18,466</b>','Years of operation: <b>72 yrs</b>','Source: <a href="https://gul-ahmed-intel.pages.dev/" target="_blank">gul-ahmed-intel.pages.dev</a>']},
+  // ── PRODUCTION METRICS ──
+  'm_capacity':{badge:'18,466w · 72yr',lines:['<b>Capacity: 18,466 workers</b>','<b>72 years of operation</b>','Vertically integrated facility','Source: Field Survey']},
+  'm_pass_rate':{badge:'100% | Wtd 6.75 | norm 5.1',lines:['<b>1st Pass Rate: 100.00%</b>','Weighted score: <b>6.75</b>','Industry avg weighted: <b>5.1</b>']},
+  'm_defect':{badge:'0.32% | Wtd 3.75 | norm 2.5',lines:['<b>Defect Rate: 0.32%</b>','Weighted score: <b>3.75</b>','Industry avg weighted: <b>2.5</b>']},
+  'm_compliance':{badge:'OEKO·BCI·SEDEX·WRAP',lines:['Factory compliance:','<b>OEKO-TEX · BCI · SEDEX · WRAP</b>','ISO 9001 · ZDHC · ISO 14001']},
+  'm_workforce':{badge:'18,466 workers',lines:['Workforce capacity:','<b>18,466 workers</b>','Large-scale integrated textile operations']},
+  // ── DELIVERY SOURCES ──
+  's_td_d':{badge:'452 inv · 6,770 ships',lines:['PO / Invoice / Shipment:','<b>Invoices: 452</b>','<b>FR records: 390</b>','<b>Shipments: 6,770</b>','OTD avg delay: <b>4 days</b>']},
+  's_cust_d':{badge:'1688: 23,353 dn txns',lines:['Customs Data (1688) — downstream:','<b>1688 as Supplier: 23,353 transactions</b>','Export customs data — delivery stage']},
+  's_tp_d':{badge:'Trade routing data',lines:['3rd Party / AI delivery intel:','Route intelligence · tariff data']},
+  // ── DELIVERY METRICS ──
+  'm_otd':{badge:'4d avg | norm ~5d',lines:['<b>OTD Rate: 100%</b>','Avg delay: <b>4 days</b>','Weighted score: <b>27.0</b> (max 27)','Industry avg weighted: <b>17.8</b>','⭐ Excellent OTD performance']},
+  'm_dif':{badge:'100% DIF ✓',lines:['<b>Delivery in Full: 100%</b>','Weighted score: <b>4.5</b>','Industry avg: <b>4.5</b>']},
+  'm_freq':{badge:'6,770 shipments',lines:['<b>6,770 total shipments</b>','High frequency supplier','Active past 2 years: Yes']},
+  // ── PAYMENT SOURCES ──
+  's_td_pay':{badge:'452 inv · 390 FR · $568M',lines:['PO / Invoice (FR data):','<b>Invoices: 452</b>','<b>FR records financed: 390</b>','<b>Sales Turnover: USD 568M</b>','Payment terms: TBC']},
+  's_cust_pay':{badge:'23,353 dn · 111 buyers',lines:['Customs payment data (1688):','<b>1688 as Supplier: 23,353 transactions</b>','<b>No. of buyers: 111</b>','Buyer concentration (Top3): <b>51%</b>']},
+  's_tp_pay':{badge:'Buyer credit data',lines:['3rd Party buyer credit signals:','<b>111 buyers</b> in network']},
+  // ── PAYMENT METRICS ──
+  'm_pay_p':{badge:'0 claims',lines:['Payment punctuality:','Claim ratio: <b>0%</b>','No claims recorded']},
+  'm_claim':{badge:'0 claims | Wtd 6.75 | norm 13.5',lines:['<b>Claim ratio: 0 claims</b>','Weighted score: <b>6.75</b>','Industry avg: <b>13.5</b>']},
+  'm_b_count':{badge:'111 buyers | Wtd 2.00 | norm 1.3',lines:['<b>No. of buyers: 111</b>','Weighted score: <b>2.00</b>','Industry avg: <b>1.3</b>']},
+  'm_b_conc':{badge:'Top3=51% | Wtd 4.00 | norm 2.7',lines:['<b>Buyer concentration (Top3): 51%</b>','Weighted score: <b>4.00</b>','Industry avg: <b>2.7</b>']},
+  'm_terms':{badge:'TBC payment terms',lines:['Payment terms: TBC']},
+  'm_hs_buyer':{badge:'111 buyers · 1688',lines:['HS buyer mapping via 1688:','<b>111 buyers</b>','1688 downstream: 23,353 txns']},
+}
  },
 
  banatoys:{
   name:'Banatoys',cls:'banatoys',
   nodes:{
-   // DELIVERY SOURCES
-   's_td_d':{badge:'~200 ships · 8 countries',lines:['Total Shipments: <b>~200</b> tracked','Destinations: <b>8 countries</b>','NL 36% · DE 21% · FR 14% · UK 11% · US 9%','DIF 100% · OTD avg delay: <b>12.07d ⚠</b>']},
-   's_cust_d':{badge:'8 countries · Ch.95',lines:['Delivery Customs: <b>8 countries</b>','Chapter 95 (Toys) HS classification','Shantou/Yantian port · SEA mode 85%']},
-   's_tp_d':{badge:'route intel · 12.07d risk',lines:['3rd Party route intelligence active','12.07d avg delay — systemic risk flagged','⚠ Carrier gap — no real-time API']},
-   // PAYMENT SOURCES
-   's_td_pay':{badge:'24 buyers · $15M',lines:['Buyer Invoices: <b>24 buyers</b>','Total Trade Value: <b>USD 15M</b>','Action (Air8 ✅) · Tokmanni (Air8 ✅) · Metro']},
-   's_bank':{badge:'0 defaults · 120d',lines:['Bank Statement: <b>0 payment defaults</b>','Avg payment term: 120 days O/A','Action + Tokmanni + Metro Sourcing: Air8 financed ✅']},
-   's_cust_pay':{badge:'24 buyers · 8 markets',lines:['Buyer mapping via customs: <b>24 buyers</b>','8 export markets globally','Action BB-/Stable · Tokmanni A · Metro B']},
-   's_tp_pay':{badge:'mixed credit · 3 declined',lines:['Buyer credit (3rd party): Action BB-/Stable','Tokmanni A · AS Watson A · TJX C','⚠ Adriaanse Declined · Walgreens ECIC Declined']},
-   // PROCUREMENT SOURCES
-   's_cust_p':{badge:'~30 upstream · ABS resin',lines:['Upstream RM: <b>~30 suppliers</b>','5 key materials: ABS/PP resin main','Dongguan Xiangfeng + Chi Mei Corp = 55% RM cost']},
-   's_tp_p':{badge:'ABS resin ↑ rising',lines:['3rd Party RM market intelligence','ABS/PP resin prices ↑ +12-18% YoY','US-China tariff Ch.95 (~55%) monitoring']},
-   // PRODUCTION SOURCES
-   's_fs_pr':{badge:'~500w · ~30 suppliers',lines:['Field Survey: <b>~500 workers</b>','~30 upstream suppliers · Chenghai factory','~20 production lines · 420K units/mo','<a href="https://banatoys-intel.pages.dev/" target="_blank" style="color:#a855f7">View Full Supplier Profile ↗</a>']},
-   's_qc_cert':{badge:'ISO·EN71·REACH·ASTM',lines:['ISO 9001 · EN71 · REACH · ASTM F963','RoHS 90% · FSC 85% packaging · SEDEX','⚠ ASTM F963 test report needed for US buyers']},
-   's_qc_audit':{badge:'ISO Audit Pass',lines:['Audit Result: <b>PASS</b>','Building/Fire/Environmental: Passed ✅','QMS: In-house · 8yr operations']},
-   // DELIVERY METRICS
-   'm_otd':{badge:'12.07d delay ⚠',lines:['OTD Avg Delay: <b>12.07 days</b> ⚠','Score 0.33 → Wtd <b>7.43 / 22.5</b>','⚠ High risk — 3rd percentile · norm ~5d','Root cause not yet identified — biggest risk']},
-   'm_dif':{badge:'100% DIF ✅',lines:['Delivery In Full: <b>100%</b>','No short/over delivery despite delay','DIF performance maintained ✅']},
-   'm_freq':{badge:'~200 ships · 8 markets',lines:['Shipping Frequency: <b>~200 total</b>','8 export markets globally','Sea mode 85% · Shantou/Yantian port']},
-   'm_dest':{badge:'8 countries · NL 36%',lines:['Destination Mix: <b>8 countries</b>','Netherlands 36% · Germany 21% · France 14%','UK 11% · US 9% — SEA mode primary']},
-   'm_lead_t':{badge:'45-60d FOB · delay risk',lines:['Lead Time: <b>45-60 days FOB</b>','⚠ 12.07d avg delay adds to effective LT','Root cause analysis needed urgently']},
-   // PAYMENT METRICS
-   'm_pay_p':{badge:'0 defaults · 120d',lines:['Payment Discipline: <b>0 defaults</b>','Avg terms: O/A 120 days','⚠ Adriaanse $2M + Walgreens $1.5M: uninsured exposure']},
-   'm_claim':{badge:'0 claims | Wtd 6.75',lines:['Claim Rate: <b>0 claims recorded</b>','Score 1 → Wtd <b>6.75</b>','Zero claim ratio — strong quality track record ✅']},
-   'm_b_count':{badge:'24 buyers | Wtd 2.00',lines:['Buyer Count: <b>24</b> buyers','Score 1 → Wtd <b>2.00</b>','8 export markets · EU-focused']},
-   'm_b_conc':{badge:'Top3=55% · HHI 0.55',lines:['Buyer Conc (Top 3): <b>55% / HHI 0.55</b>','Toi-Toys $5M + Adriaanse $2M + ROSS $850K','Score 1 → Wtd <b>4.00</b> ✅ Within threshold']},
-   'm_terms':{badge:'120d O/A · ⚠ exposure',lines:['Payment Term: <b>120 days O/A</b>','Score: — → Wtd 0 (benchmark exception)','⚠ Adriaanse ($2M) + Walgreens ($1.5M): 0% cover']},
-   'm_b_credit':{badge:'A/B-/C + 3 declined',lines:['Credit: Action BB-/Stable (Air8 ✅)','Tokmanni A · AS Watson A · TJX C','⚠ Adriaanse Declined · Walgreens ECIC Declined','⚠ $3.5M in declined buyer exposure uninsured']},
-   'm_dilution':{badge:'0 claims · 0%',lines:['Dilution Risk: <b>0 claims</b> recorded','Invoice adjustments: 0%','Product quality strong despite delay risk']},
-   'm_hs_buyer':{badge:'Ch.95 · US tariff risk',lines:['HS Code Buyer Mapping: <b>Chapter 95 (Toys)</b>','US-China stacked tariff ~55% on Ch.95','ROSS + Walgreens + TJX: US buyers at risk']},
-   'm_buyer_hs_rev':{badge:'Ch.95 · $15M · EU focus',lines:['Buyer Revenue by HS: <b>Chapter 95</b>','$15M total · NL/EU primary markets','US exposure: ROSS $850K + Walgreens $1.5M risk']},
-   // PROCUREMENT METRICS
-   'm_sup_map':{badge:'~30 upstream · 5 mats',lines:['Upstream RM Suppliers: <b>~30</b>','5 key materials: ABS/PP resin · electronics','Dongguan Xiangfeng + Chi Mei Corp = 55% RM cost']},
-   'm_cert_cov':{badge:'78% · REACH 100%',lines:['RM Certification Coverage: <b>78%</b>','ABS Resin: REACH 100% · RoHS 90%','EN71 80% · FSC 85% packaging · ISO 9001 100%']},
-   'm_concentration':{badge:'ABS/PP=55% · high',lines:['Sourcing Concentration: <b>ABS/PP = 55% RM cost</b>','Dongguan Xiangfeng + Chi Mei Corp dominant','⚠ High resin supplier concentration']},
-   'm_commodity':{badge:'ABS ↑ +12-18% · tariff',lines:['ABS/PP resin +12-18% YoY (Sinopec index)','US-China tariff Ch.95 ~55% stacked rate','⚠ Truce expires Aug 2026 — escalation risk']},
-   // PRODUCTION METRICS
-   'm_capacity':{badge:'~500w · ~20 lines',lines:['Workers: <b>~500</b> (Chenghai main factory)','~20 production lines · 420K units/mo · 5M/yr','8yr operations · private factory','<a href="https://banatoys-intel.pages.dev/" target="_blank" style="color:#a855f7">View Supplier Profile ↗</a>']},
-   'm_compliance':{badge:'ISO·EN71·REACH·ASTM',lines:['ISO 9001 · EN71 · REACH · ASTM F963','RoHS 90% · SEDEX · Building/Fire Passed','⚠ ASTM F963 test report needed for US market']},
-   'm_workforce':{badge:'~500 · ~20 lines',lines:['Workers: <b>~500</b> (Chenghai)','~20 production lines · MOQ 500-999 units','Lead time: 45-60 days FOB']},
-   'm_lab_test':{badge:'97.92% pass · 0.75%',lines:['1st Pass Rate: <b>97.92%</b>','Defect Rate: <b>0.75%</b>','Re-inspection: 0% · Claim: 0%']},
-   'm_pass_rate':{badge:'97.92% | Wtd 4.52',lines:['1st Pass Rate: <b>97.92%</b>','Score 0.67 → Wtd <b>4.52</b>','Industry norm Wtd: ~5.1 ⚠ Below']},
-   'm_defect':{badge:'0.75% | Wtd 2.51',lines:['Defect Rate: <b>0.75%</b>','Score 0.67 → Wtd <b>2.51</b>','Industry norm Wtd: ~2.5 ≈ At norm']},
-   // SCORECARD — full attribute breakdowns
-
-
-
-   's_insp':{badge:'1st Pass 100% · Defect 0.39%',lines:['1st Pass Rate: <b>100%</b>','Defect Rate: <b>0.39%</b> (norm ~2%)','Re-inspection: —','Source: Inspection Report']},
-   's_rmcert':{badge:'BCI 100% · OEKO-TEX 90%',lines:['BCI Cotton: <b>100%</b>','OEKO-TEX: <b>90%</b>','GOTS · ZDHC · ISO 9001','WRAP · ISO 14001 · SEDEX']},
-  }
+  // ── PROCUREMENT SOURCES ──
+  's_tp_p':{badge:'HK trading intel',lines:['3rd Party / AI:','HK trading company — sourced from mainland China','Buyer mapping via trade databases']},
+  // ── PRODUCTION SOURCES ──
+  's_insp':{badge:'Inspection active',lines:['Inspection Report: ACTIVE']},
+  's_fs_pr':{badge:'~500w · 8yr',lines:['Field Survey / FS:','Workers: <b>~500</b>','Years of operation: <b>8 yrs</b>','HK trading company — manufacturing via China factories','Source: <a href="https://banatoys-intel.pages.dev/" target="_blank">banatoys-intel.pages.dev</a>']},
+  // ── PRODUCTION METRICS ──
+  'm_capacity':{badge:'~500w · 8yr',lines:['<b>~500 workers</b>','<b>8 years of operation</b>','HK trading company — China manufacturing']},
+  'm_pass_rate':{badge:'97.9% | Wtd 4.52 | norm 5.1',lines:['<b>1st Pass Rate: 97.92%</b>','Weighted score: <b>4.52</b>','Industry avg weighted: <b>5.1</b>','Score: 0.67/1.0']},
+  'm_defect':{badge:'0.75% | Wtd 2.51 | norm 2.5',lines:['<b>Defect Rate: 0.75%</b>','Weighted score: <b>2.51</b>','Industry avg weighted: <b>2.5</b>','At industry norm level']},
+  'm_compliance':{badge:'SEDEX·ISO·OEKO',lines:['Factory compliance:','<b>SEDEX · ISO 9001 · OEKO-TEX</b>','BCI · WRAP · ZDHC']},
+  // ── DELIVERY SOURCES ──
+  's_td_d':{badge:'51 inv · 200 ships',lines:['PO / Invoice / Shipment:','<b>Invoices: 51</b>','<b>FR records: 47</b>','<b>Shipments: ~200</b>','<b>8 destination countries</b>','OTD avg delay: <b>12.07 days</b> ⚠️']},
+  's_tp_d':{badge:'HK routing data',lines:['3rd Party / AI delivery intel:','Trade routing from HK → global']},
+  // ── DELIVERY METRICS ──
+  'm_otd':{badge:'12.07d avg ⚠️ | norm ~5d',lines:['<b>OTD Rate: TBC</b>','Avg delay: <b>12.07 days</b> ⚠️','Weighted score: <b>7.43</b>','Industry avg weighted: <b>17.8</b>','⚠️ Significantly above industry norm']},
+  'm_dif':{badge:'97.9% DIF',lines:['<b>Delivery in Full: 97.92%</b>','Weighted score: <b>~4.3</b>','Industry avg: <b>4.5</b>']},
+  'm_freq':{badge:'51 inv · 8 countries',lines:['Shipping frequency:','<b>51 invoices · 200 shipments</b>','<b>8 export destination countries</b>']},
+  'm_dest':{badge:'8 countries',lines:['Destination mix:','<b>8 destination countries</b>','HK → global distribution']},
+  // ── PAYMENT SOURCES ──
+  's_td_pay':{badge:'51 inv · 47 FR · $15M',lines:['PO / Invoice (FR data):','<b>Invoices: 51</b>','<b>FR records financed: 47</b>','<b>Sales Turnover: USD 15M</b>','Payment terms: <b>120 days</b>']},
+  's_cust_pay':{badge:'23 buyers · Top3=55%',lines:['Payment/buyer data:','<b>No. of buyers: 23</b>','Buyer concentration (Top3): <b>55%</b>']},
+  // ── PAYMENT METRICS ──
+  'm_pay_p':{badge:'0 claims',lines:['<b>Claim Rate: 0</b>','Payment discipline: Good']},
+  'm_claim':{badge:'0 | Wtd 6.75 | norm 13.5',lines:['<b>Claim Rate: 0</b>','Weighted score: <b>6.75</b>','Industry avg: <b>13.5</b>']},
+  'm_b_count':{badge:'23 buyers | Wtd 2.00 | norm 1.3',lines:['<b>No. of buyers: 23 (internal) / 79 (network)</b>','Weighted score: <b>2.00</b>','Industry avg: <b>1.3</b>']},
+  'm_b_conc':{badge:'Top3=55% | Wtd 4.00 | norm 2.7',lines:['<b>Buyer concentration (Top3): 55%</b>','Weighted score: <b>4.00</b>','Industry avg: <b>2.7</b>']},
+  'm_terms':{badge:'120d | Wtd 0 | norm 1.3',lines:['<b>Payment terms: 120 days</b>','Weighted score: <b>0</b>','Industry avg: <b>1.3</b>']},
+}
  }
 };
 
